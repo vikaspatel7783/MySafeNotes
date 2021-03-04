@@ -4,10 +4,14 @@ import android.content.Context
 import androidx.room.Database
 import androidx.room.Room
 import androidx.room.RoomDatabase
+import androidx.sqlite.db.SupportSQLiteDatabase
 import com.vikas.mobile.mysafenotes.data.dao.CategoryDao
 import com.vikas.mobile.mysafenotes.data.dao.NoteDao
 import com.vikas.mobile.mysafenotes.data.entity.Category
 import com.vikas.mobile.mysafenotes.data.entity.Note
+import kotlinx.coroutines.CoroutineScope
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.launch
 
 @Database(entities = [Category::class, Note::class], version = 1, exportSchema = false)
 abstract class MySafeNotesDatabase: RoomDatabase() {
@@ -30,7 +34,19 @@ abstract class MySafeNotesDatabase: RoomDatabase() {
 
         private fun buildDatabase(context: Context): MySafeNotesDatabase {
             return Room.databaseBuilder(context, MySafeNotesDatabase::class.java, DATABASE_NAME)
-                //.addCallback()
+                .addCallback(
+                    object : RoomDatabase.Callback() {
+                        override fun onCreate(db: SupportSQLiteDatabase) {
+                            super.onCreate(db)
+//                            val db1 = MySafeNotesDatabase.getInstance(context)
+//                            CoroutineScope(Dispatchers.IO).launch {
+//                                db1.categoryDao().insert(Category("BANKING"))
+//                                db1.categoryDao().insert(Category("PERSONAL"))
+//                                db1.categoryDao().insert(Category("FRIENDS"))
+//                            }
+                        }
+                    }
+                )
                 //.allowMainThreadQueries()
                 .build()
         }

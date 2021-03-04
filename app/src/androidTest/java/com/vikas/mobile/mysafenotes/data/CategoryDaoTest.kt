@@ -6,6 +6,7 @@ import androidx.test.ext.junit.runners.AndroidJUnit4
 import androidx.test.platform.app.InstrumentationRegistry
 import com.vikas.mobile.mysafenotes.data.dao.CategoryDao
 import com.vikas.mobile.mysafenotes.data.entity.Category
+import com.vikas.mobile.mysafenotes.getOrAwaitValue
 import kotlinx.coroutines.runBlocking
 import org.junit.*
 import org.junit.runner.RunWith
@@ -72,8 +73,7 @@ class CategoryDaoTest {
 
         runBlocking {
             categoryDao.insertAll(listOf(bankingCategory, personalCategory, friendsCategory))
-            val count = categoryDao.getAll().size
-            Assert.assertEquals(3, count)
+            Assert.assertEquals(3, categoryDao.getAll().getOrAwaitValue().size)
         }
     }
 }
