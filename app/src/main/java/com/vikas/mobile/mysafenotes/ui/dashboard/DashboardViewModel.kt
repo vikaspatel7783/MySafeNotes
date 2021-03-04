@@ -1,21 +1,10 @@
 package com.vikas.mobile.mysafenotes.ui.dashboard
 
-import androidx.lifecycle.LiveData
-import androidx.lifecycle.MediatorLiveData
-import androidx.lifecycle.ViewModel
-import androidx.lifecycle.viewModelScope
+import androidx.lifecycle.*
 import com.vikas.mobile.mysafenotes.data.Repository
 import com.vikas.mobile.mysafenotes.data.entity.Category
-import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.launch
 
-class DashboardViewModel : ViewModel() {
-
-    private lateinit var repository : Repository
-
-    fun setRepository(repository: Repository) {
-        this.repository = repository
-    }
+class DashboardViewModel(private val repository: Repository) : ViewModel() {
 
     fun getAllCategories(): LiveData<List<Category>> {
         return repository.getAllCategories()
@@ -26,5 +15,12 @@ class DashboardViewModel : ViewModel() {
 //            postValue(repository.getAllCategories())
 //        }
 //    }
+}
+
+class DashboardViewModelFactory(private val repository: Repository) : ViewModelProvider.Factory {
+    override fun <T : ViewModel?> create(modelClass: Class<T>): T {
+        return modelClass.getConstructor(Repository::class.java)
+                .newInstance(repository)
+    }
 
 }

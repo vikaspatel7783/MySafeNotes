@@ -19,8 +19,7 @@ class DashboardActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_dashboard)
 
-        dashboardViewModel = ViewModelProvider(this).get(DashboardViewModel::class.java)
-        dashboardViewModel.setRepository(InstanceFactory.repository)
+        dashboardViewModel = ViewModelProvider(this, DashboardViewModelFactory(InstanceFactory.repository)).get(DashboardViewModel::class.java)
         dashboardViewModel.getAllCategories().observe(this, {
             setPagerView(it)
         })
