@@ -1,25 +1,26 @@
 package com.vikas.mobile.mysafenotes.ui.dashboard
 
 import android.os.Bundle
+import androidx.activity.viewModels
+import androidx.annotation.MainThread
 import com.google.android.material.floatingactionbutton.FloatingActionButton
 import com.google.android.material.snackbar.Snackbar
 import com.google.android.material.tabs.TabLayout
 import androidx.viewpager.widget.ViewPager
 import androidx.appcompat.app.AppCompatActivity
-import androidx.lifecycle.ViewModelProvider
-import com.vikas.mobile.mysafenotes.InstanceFactory
 import com.vikas.mobile.mysafenotes.R
 import com.vikas.mobile.mysafenotes.data.entity.Category
+import dagger.hilt.android.AndroidEntryPoint
 
+@AndroidEntryPoint
 class DashboardActivity : AppCompatActivity() {
 
-    lateinit var dashboardViewModel: DashboardViewModel
+    private val dashboardViewModel: DashboardViewModel by viewModels()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_dashboard)
 
-        dashboardViewModel = ViewModelProvider(this, DashboardViewModelFactory(InstanceFactory.repository)).get(DashboardViewModel::class.java)
         dashboardViewModel.getAllCategories().observe(this, {
             setPagerView(it)
         })
