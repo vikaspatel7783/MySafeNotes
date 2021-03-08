@@ -10,6 +10,7 @@ import androidx.viewpager.widget.ViewPager
 import androidx.appcompat.app.AppCompatActivity
 import com.vikas.mobile.mysafenotes.R
 import com.vikas.mobile.mysafenotes.data.entity.Category
+import com.vikas.mobile.mysafenotes.ui.AddCategoryDialogFragment
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
@@ -28,8 +29,7 @@ class DashboardActivity : AppCompatActivity() {
         val fab: FloatingActionButton = findViewById(R.id.fab)
 
         fab.setOnClickListener { view ->
-            Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
-                .setAction("Action", null).show()
+            AddCategoryDialogFragment.newInstance().show(supportFragmentManager, "TagAddCategory")
         }
     }
 

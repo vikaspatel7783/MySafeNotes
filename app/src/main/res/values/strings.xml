@@ -1,4 +1,8 @@
 <resources>
     <string name="app_name">MySafeNotes</string>
     <string name="title_activity_dashboard">DashboardActivity</string>
+
+    <string name="label_add_category">CATEGORY NAME</string>
+    <string name="button_add_category_cancel">CANCEL</string>
+    <string name="button_add_category_add">ADD</string>
 </resources>

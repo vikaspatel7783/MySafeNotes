@@ -5,5 +5,6 @@ import com.vikas.mobile.mysafenotes.data.entity.Category
 
 interface Repository {
 
+    suspend fun addCategory(category: Category): Long
     fun getAllCategories(): LiveData<List<Category>>
 }
