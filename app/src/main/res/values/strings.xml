@@ -5,4 +5,7 @@
     <string name="label_add_category">CATEGORY NAME</string>
     <string name="button_add_category_cancel">CANCEL</string>
     <string name="button_add_category_add">ADD</string>
+
+    <string name="screen_title_add_note">ADD NEW NOTE</string>
+    <string name="button_save_note">SAVE</string>
 </resources>
