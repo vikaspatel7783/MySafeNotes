@@ -11,7 +11,7 @@ import kotlinx.coroutines.launch
 import javax.inject.Inject
 
 @HiltViewModel
-class DashboardViewModel @Inject constructor() : ViewModel() {
+class DashboardViewModel @Inject constructor(): ViewModel() {
 
     @Inject lateinit var repository: Repository
 

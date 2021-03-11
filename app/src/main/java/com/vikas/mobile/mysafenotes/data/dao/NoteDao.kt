@@ -1,5 +1,6 @@
 package com.vikas.mobile.mysafenotes.data.dao
 
+import androidx.lifecycle.LiveData
 import androidx.room.*
 import com.vikas.mobile.mysafenotes.data.entity.Note
 
@@ -13,7 +14,7 @@ interface NoteDao {
     suspend fun insert(note: Note): Long
 
     @Query("SELECT * FROM note_table WHERE category_id = :categoryId")
-    suspend fun getByCategory(categoryId: Long): List<Note>
+    fun getByCategory(categoryId: Long): LiveData<List<Note>>
 
     @Query("SELECT * FROM note_table WHERE id = :noteId")
     suspend fun getNote(noteId: Long): Note

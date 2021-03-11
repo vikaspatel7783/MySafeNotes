@@ -17,6 +17,7 @@ import com.vikas.mobile.mysafenotes.R
 import com.vikas.mobile.mysafenotes.data.entity.Category
 import com.vikas.mobile.mysafenotes.ui.AddCategoryDialogFragment
 import dagger.hilt.android.AndroidEntryPoint
+import java.util.*
 
 @AndroidEntryPoint
 class AddNoteActivity : AppCompatActivity() {
@@ -30,7 +31,7 @@ class AddNoteActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.add_note_layout)
 
-        findViewById<TextView>(R.id.labelCategory).text = intent.getStringExtra(KEY_CATEGORY_NAME)
+        findViewById<TextView>(R.id.labelCategory).text = intent.getStringExtra(KEY_CATEGORY_NAME)!!.toUpperCase(Locale.ROOT)
 
         findViewById<Button>(R.id.buttonAddCategoryCancel).setOnClickListener {
             setResult(RESULT_CANCELED)

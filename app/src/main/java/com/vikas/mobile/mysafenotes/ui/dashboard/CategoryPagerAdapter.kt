@@ -4,29 +4,30 @@ import android.content.Context
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentManager
 import androidx.fragment.app.FragmentPagerAdapter
-import androidx.lifecycle.LiveData
-import com.vikas.mobile.mysafenotes.R
 import com.vikas.mobile.mysafenotes.data.entity.Category
+import java.util.*
 
 /**
  * A [FragmentPagerAdapter] that returns a fragment corresponding to
  * one of the sections/tabs/pages.
  */
-class SectionsPagerAdapter(
+class CategoryPagerAdapter(
     private val context: Context,
-    fm: FragmentManager,
+    manager: FragmentManager,
     private val allCategories: List<Category>
 ) :
-    FragmentPagerAdapter(fm) {
+    FragmentPagerAdapter(manager, BEHAVIOR_RESUME_ONLY_CURRENT_FRAGMENT) {
 
     override fun getItem(position: Int): Fragment {
-        // getItem is called to instantiate the fragment for the given page.
-        // Return a PlaceholderFragment (defined as a static inner class below).
-        return PlaceholderFragment.newInstance(position + 1)
+        return CategoryTabFragment.newInstance(allCategories[position].id)
     }
 
     override fun getPageTitle(position: Int): CharSequence? {
-        return allCategories[position].name
+        return allCategories[position].name.toUpperCase(Locale.ROOT)
+    }
+
+    fun getCurrentCategory(position: Int): Category {
+        return allCategories[position]
     }
 
     override fun getCount(): Int {

@@ -10,4 +10,5 @@ interface Repository {
     fun getAllCategories(): LiveData<List<Category>>
 
     suspend fun addNote(note: Note): Long
+    fun getNotes(categoryId: Long): LiveData<List<Note>>
 }

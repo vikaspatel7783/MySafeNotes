@@ -10,7 +10,7 @@ import com.vikas.mobile.mysafenotes.data.entity.Category
 @Dao
 interface CategoryDao {
 
-    @Query("SELECT * FROM category_table ORDER BY name ASC")
+    @Query("SELECT * FROM category_table /* ORDER BY name ASC */")
     fun getAll(): LiveData<List<Category>>
 
     @Insert(onConflict = OnConflictStrategy.REPLACE)

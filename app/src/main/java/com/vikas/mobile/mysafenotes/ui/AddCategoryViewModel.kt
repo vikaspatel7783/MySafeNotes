@@ -1,4 +1,4 @@
-package com.vikas.mobile.mysafenotes.ui.dashboard
+package com.vikas.mobile.mysafenotes.ui
 
 import androidx.lifecycle.*
 import com.vikas.mobile.mysafenotes.data.Repository

@@ -2,23 +2,16 @@ package com.vikas.mobile.mysafenotes.ui
 
 import android.os.Bundle
 import com.google.android.material.bottomsheet.BottomSheetDialogFragment
-import androidx.recyclerview.widget.LinearLayoutManager
-import androidx.recyclerview.widget.RecyclerView
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Button
 import android.widget.EditText
-import android.widget.TextView
 import androidx.fragment.app.viewModels
-import androidx.lifecycle.ViewModel
 import com.vikas.mobile.mysafenotes.R
-import com.vikas.mobile.mysafenotes.data.Repository
 import com.vikas.mobile.mysafenotes.data.entity.Category
-import com.vikas.mobile.mysafenotes.ui.dashboard.AddCategoryViewModel
 import dagger.hilt.android.AndroidEntryPoint
-import kotlinx.coroutines.runBlocking
-import javax.inject.Inject
+import java.util.*
 
 /**
  *
@@ -51,7 +44,7 @@ class AddCategoryDialogFragment : BottomSheetDialogFragment() {
 
     private fun getKeyedCategoryName() : String {
         val categoryName = view?.findViewById<EditText>(R.id.edtTextAddCategory)?.text
-        return categoryName.toString()
+        return categoryName.toString().trim()
     }
 
     companion object {
