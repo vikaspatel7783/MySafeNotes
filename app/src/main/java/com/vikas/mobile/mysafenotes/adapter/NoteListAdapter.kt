@@ -3,12 +3,15 @@ package com.vikas.mobile.mysafenotes.adapter
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.ImageButton
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.vikas.mobile.mysafenotes.R
 import com.vikas.mobile.mysafenotes.data.entity.Note
 
-class NoteListAdapter(private val dataSet: List<Note>, private val onClick: (Note) -> Unit) :
+class NoteListAdapter(private val dataSet: List<Note>,
+                      private val onClick: (Note) -> Unit,
+                      private val onDelete: (Note) -> Unit) :
     RecyclerView.Adapter<NoteListAdapter.ViewHolder>() {
 
     /**
@@ -17,8 +20,8 @@ class NoteListAdapter(private val dataSet: List<Note>, private val onClick: (Not
      */
     class ViewHolder(view: View) : RecyclerView.ViewHolder(view) {
         val noteContainerView: ViewGroup = view.findViewById(R.id.containerNoteListItem)
+        val noteDeleteView: ImageButton = view.findViewById(R.id.note_delete)
         val noteContentView: TextView = view.findViewById(R.id.note_content_item)
-
     }
 
     // Create new views (invoked by the layout manager)
@@ -26,13 +29,23 @@ class NoteListAdapter(private val dataSet: List<Note>, private val onClick: (Not
         // Create a new view, which defines the UI of the list item
         val view = LayoutInflater.from(viewGroup.context)
             .inflate(R.layout.note_list_item, viewGroup, false)
-        return ViewHolder(view)
+        val viewHolder = ViewHolder(view)
+
+        viewHolder.noteContainerView.setOnClickListener {
+            onClick(it.tag as Note)
+        }
+
+        viewHolder.noteDeleteView.setOnClickListener {
+            onDelete(it.tag as Note)
+        }
+        return viewHolder
     }
 
-    // Replace the contents of a view (invoked by the layout manager)
     override fun onBindViewHolder(viewHolder: ViewHolder, position: Int) {
-        viewHolder.noteContentView.text = dataSet[position].noteContent
-        viewHolder.noteContainerView.setOnClickListener { onClick(dataSet[position]) }
+        val note = dataSet[position]
+        viewHolder.noteContentView.text = note.noteContent
+        viewHolder.noteContainerView.tag = note
+        viewHolder.noteDeleteView.tag = note
     }
 
     override fun getItemCount() = dataSet.size

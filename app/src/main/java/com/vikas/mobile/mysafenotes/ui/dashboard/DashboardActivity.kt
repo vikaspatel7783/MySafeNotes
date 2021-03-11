@@ -69,7 +69,7 @@ class DashboardActivity : AppCompatActivity() {
                 noteContent = noteContent
             ).let { dashboardViewModel.addNewNote(it) }
 
-            Snackbar.make(viewPager, "NOTE ADDED", Snackbar.LENGTH_LONG)
+            Snackbar.make(viewPager, "NOTE ADDED", Snackbar.LENGTH_SHORT)
                     //.setAction("Action", null)
                     .show()
         }

@@ -19,9 +19,10 @@ interface NoteDao {
     @Query("SELECT * FROM note_table WHERE id = :noteId")
     suspend fun getNote(noteId: Long): Note
 
+    @Delete
+    suspend fun deleteNote(note: Note)
+
     //@Query("DELETE FROM note_table WHERE id = :bankNoteId")
     //suspend fun delete(bankNoteId: Long)
 
-    //@Delete
-    //suspend fun delete(note: Note)
 }
