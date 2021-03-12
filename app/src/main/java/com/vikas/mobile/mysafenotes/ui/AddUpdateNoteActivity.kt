@@ -6,6 +6,7 @@ import android.widget.EditText
 import android.widget.TextView
 import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
+import androidx.core.widget.addTextChangedListener
 import com.vikas.mobile.mysafenotes.R
 import com.vikas.mobile.mysafenotes.data.entity.Note
 import dagger.hilt.android.AndroidEntryPoint
@@ -15,10 +16,14 @@ import java.util.*
 class AddUpdateNoteActivity : AppCompatActivity() {
 
     private val addUpdateNoteViewModel: AddUpdateNoteViewModel by viewModels()
+    private lateinit var buttonAddUpdateNote: Button
+    private lateinit var editTextNoteContent: EditText
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.add_note_layout)
+        buttonAddUpdateNote = findViewById(R.id.buttonAddUpdateNote)
+        editTextNoteContent = findViewById(R.id.edtTextNote)
 
         findViewById<TextView>(R.id.labelCategory).text = getCategoryName()!!.toUpperCase(Locale.ROOT)
 
@@ -32,9 +37,13 @@ class AddUpdateNoteActivity : AppCompatActivity() {
             finish()
         }
 
-        findViewById<Button>(R.id.buttonAddUpdateNote).setOnClickListener {
+        editTextNoteContent.addTextChangedListener {
+            buttonAddUpdateNote.isEnabled = it.toString().isNotEmpty()
+        }
 
-            val noteContent = findViewById<EditText>(R.id.edtTextNote).text.toString()
+        buttonAddUpdateNote.setOnClickListener {
+
+            val noteContent = editTextNoteContent.text.toString()
 
             val noteObj = Note(categoryId = getCategoryId(), noteContent = noteContent)
             if (isNoteExist()) {

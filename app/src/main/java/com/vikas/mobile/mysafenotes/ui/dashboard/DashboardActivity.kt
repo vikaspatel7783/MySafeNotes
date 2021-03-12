@@ -20,6 +20,7 @@ class DashboardActivity : AppCompatActivity() {
 
     private val dashboardViewModel: DashboardViewModel by viewModels()
     private lateinit var viewPager: ViewPager
+    private lateinit var fabAddNoteButton: FloatingActionButton
     private var categoryMap = emptyMap<Long, String>()
     private var categoryList = emptyList<Category>()
 
@@ -27,6 +28,7 @@ class DashboardActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_dashboard)
 
+        fabAddNoteButton = findViewById(R.id.fab_add_note)
         viewPager = findViewById(R.id.view_pager)
         viewPager.adapter = CategoryPagerAdapter(this, supportFragmentManager, categoryList)
         val tabs: TabLayout = findViewById(R.id.tabs)
@@ -38,6 +40,8 @@ class DashboardActivity : AppCompatActivity() {
             }.toMap()
 
             categoryList = receivedCategories
+            fabAddNoteButton.isEnabled = categoryList.isNotEmpty()
+
             //TODO: notifyDatasetChange not working. Should not create new instance everytime when data updates
             viewPager.adapter = CategoryPagerAdapter(this, supportFragmentManager, categoryList)
             //(viewPager.adapter as CategoryPagerAdapter).notifyDataSetChanged()

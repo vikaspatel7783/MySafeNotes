@@ -41,10 +41,10 @@
         <Button
             android:id="@+id/buttonAddUpdateNote"
             android:layout_toEndOf="@+id/buttonAddNoteCancel"
-            android:paddingStart="5dp"
             android:layout_marginStart="15dp"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:enabled="false"
             android:text="@string/button_save_note"
             tools:ignore="RtlSymmetry" />
 
