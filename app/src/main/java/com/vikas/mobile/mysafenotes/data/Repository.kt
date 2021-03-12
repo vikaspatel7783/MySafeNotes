@@ -7,9 +7,14 @@ import com.vikas.mobile.mysafenotes.data.entity.Note
 interface Repository {
 
     suspend fun addCategory(category: Category): Long
+
     fun getAllCategories(): LiveData<List<Category>>
 
-    suspend fun addNote(note: Note): Long
+    suspend fun addUpdateNote(note: Note): Long
+
     fun getNotes(categoryId: Long): LiveData<List<Note>>
+
+    fun getNote(noteId: Long): LiveData<Note>
+
     suspend fun deleteNote(note: Note)
 }

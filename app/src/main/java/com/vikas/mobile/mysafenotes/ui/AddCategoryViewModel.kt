@@ -18,6 +18,7 @@ class AddCategoryViewModel @Inject constructor() : ViewModel() {
         }
     }
 
+    fun fetchAllCategories() = repository.getAllCategories()
 
 }
 

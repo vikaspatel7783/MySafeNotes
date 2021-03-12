@@ -13,9 +13,20 @@
         android:textColor="@color/design_default_color_on_secondary"
         android:text="@string/label_add_category" />
 
+    <TextView
+        android:id="@+id/textAddCategoryError"
+        android:layout_below="@+id/labelAddCategory"
+        android:gravity="right"
+        android:textColor="@android:color/holo_red_dark"
+        android:visibility="gone"
+        android:layout_marginTop="10dp"
+        android:text="@string/error_category_already_exist"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"/>
+
     <EditText
         android:id="@+id/edtTextAddCategory"
-        android:layout_below="@+id/labelAddCategory"
+        android:layout_below="@+id/textAddCategoryError"
         android:paddingTop="8dp"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -28,6 +39,7 @@
         android:id="@+id/containerAddCategoryButtons"
         android:layout_below="@+id/edtTextAddCategory"
         android:layout_marginTop="30dp"
+        android:layout_marginBottom="30dp"
         android:layout_alignParentEnd="true"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content">
@@ -45,6 +57,7 @@
             android:layout_marginStart="15dp"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:enabled="false"
             android:text="@string/button_add_category_add"
             tools:ignore="RtlSymmetry" />
 

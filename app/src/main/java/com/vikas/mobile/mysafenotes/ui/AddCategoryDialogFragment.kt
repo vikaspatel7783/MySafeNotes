@@ -7,6 +7,8 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.Button
 import android.widget.EditText
+import android.widget.TextView
+import androidx.core.widget.addTextChangedListener
 import androidx.fragment.app.viewModels
 import com.vikas.mobile.mysafenotes.R
 import com.vikas.mobile.mysafenotes.data.entity.Category
@@ -23,28 +25,54 @@ import java.util.*
 class AddCategoryDialogFragment : BottomSheetDialogFragment() {
 
     private val addCategoryViewModel: AddCategoryViewModel by viewModels()
+    private val allCategoriesName = mutableListOf<String>()
+
+    lateinit var buttonAdd: Button
+    lateinit var editTextCategory: EditText
+    lateinit var textViewError: TextView
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?,
                               savedInstanceState: Bundle?): View? {
-        return inflater.inflate(R.layout.add_cateogry_layout, container, false)
+        val inflatedView = inflater.inflate(R.layout.add_cateogry_layout, container, false)
+        buttonAdd = inflatedView.findViewById(R.id.buttonAddCategoryAdd)
+        editTextCategory = inflatedView.findViewById(R.id.edtTextAddCategory)
+        textViewError = inflatedView.findViewById(R.id.textAddCategoryError)
+
+        return inflatedView
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        addCategoryViewModel.fetchAllCategories().observe(this, { categoryList ->
+            categoryList.forEach { category ->
+                allCategoriesName.add(category.name.toLowerCase(Locale.ROOT))
+            }
+        })
+
         view.findViewById<Button>(R.id.buttonAddCategoryCancel).setOnClickListener {
             dismiss()
         }
 
-        view.findViewById<Button>(R.id.buttonAddCategoryAdd).setOnClickListener {
+        buttonAdd.setOnClickListener {
             Category(getKeyedCategoryName()).run {
                 addCategoryViewModel.addCategory(this)
             }
             dismiss()
         }
+
+        editTextCategory.addTextChangedListener {
+            if (allCategoriesName.contains(it.toString().trim().toLowerCase(Locale.ROOT))) {
+                buttonAdd.isEnabled = false
+                textViewError.visibility = View.VISIBLE
+                textViewError.text = getString(R.string.error_category_already_exist)
+            } else {
+                textViewError.visibility = View.GONE
+                buttonAdd.isEnabled = true
+            }
+        }
     }
 
     private fun getKeyedCategoryName() : String {
-        val categoryName = view?.findViewById<EditText>(R.id.edtTextAddCategory)?.text
-        return categoryName.toString().trim()
+        return editTextCategory.text.toString().trim()
     }
 
     companion object {

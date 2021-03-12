@@ -6,6 +6,8 @@
     <string name="button_add_category_cancel">CANCEL</string>
     <string name="button_add_category_add">ADD</string>
 
+    <string name="error_category_already_exist">This category already exist</string>
+
     <string name="screen_title_add_note">ADD NEW NOTE</string>
     <string name="button_save_note">SAVE</string>
 </resources>

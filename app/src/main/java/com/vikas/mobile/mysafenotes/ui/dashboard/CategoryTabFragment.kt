@@ -36,7 +36,7 @@ class CategoryTabFragment(private val categoryId: Long) : Fragment() {
         categoryTabViewModel.getNotes(categoryId).observe(viewLifecycleOwner, { it ->
 
             val noteListAdapter = NoteListAdapter(it, onClick = {
-                    // note clicked. open it in edit mode
+                (activity as DashboardActivity).onNoteClicked(it)
             }) {
                 Snackbar.make(root, "DELETE NOTE ?", Snackbar.LENGTH_LONG)
                         .setAction("YES") { _ ->

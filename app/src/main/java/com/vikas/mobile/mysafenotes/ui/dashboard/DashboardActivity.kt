@@ -2,8 +2,6 @@ package com.vikas.mobile.mysafenotes.ui.dashboard
 
 import android.content.Intent
 import android.os.Bundle
-import android.widget.Toast
-import androidx.activity.result.contract.ActivityResultContracts
 import androidx.activity.viewModels
 import com.google.android.material.floatingactionbutton.FloatingActionButton
 import com.google.android.material.tabs.TabLayout
@@ -14,7 +12,7 @@ import com.vikas.mobile.mysafenotes.R
 import com.vikas.mobile.mysafenotes.data.entity.Category
 import com.vikas.mobile.mysafenotes.data.entity.Note
 import com.vikas.mobile.mysafenotes.ui.AddCategoryDialogFragment
-import com.vikas.mobile.mysafenotes.ui.AddNoteActivity
+import com.vikas.mobile.mysafenotes.ui.AddUpdateNoteActivity
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
@@ -50,28 +48,28 @@ class DashboardActivity : AppCompatActivity() {
         }
 
         findViewById<FloatingActionButton>(R.id.fab_add_note).setOnClickListener {
-            resultLauncher.launch(Intent(applicationContext, AddNoteActivity::class.java).apply {
-                putExtra(AddNoteActivity.KEY_CATEGORY_NAME,
-                        ((viewPager.adapter) as CategoryPagerAdapter).getCurrentCategory(viewPager.currentItem).name)
-            })
+            showAddUpdateNoteActivity()
         }
     }
 
-    private var resultLauncher = registerForActivityResult(ActivityResultContracts.StartActivityForResult()) { result ->
-        if (result.resultCode == RESULT_OK) {
-            val data: Intent? = result.data
+    private fun showAddUpdateNoteActivity() {
+        startActivity(prepareIntentForAddUpdateNewNote(getCurrentCategory()))
+    }
 
-            val currentCategory =  ((viewPager.adapter) as CategoryPagerAdapter).getCurrentCategory(viewPager.currentItem)
-            val noteContent = data?.extras?.get(AddNoteActivity.KEY_NOTE_CONTENT).toString()
+    fun onNoteClicked(note: Note) {
+        prepareIntentForAddUpdateNewNote(getCurrentCategory()).apply {
+            putExtra(AddUpdateNoteActivity.KEY_NOTE_ID, note.id)
+        }.run {
+            startActivity(this)
+        }
+    }
 
-            Note(
-                categoryId = currentCategory.id,
-                noteContent = noteContent
-            ).let { dashboardViewModel.addNewNote(it) }
+    private fun getCurrentCategory() = ((viewPager.adapter) as CategoryPagerAdapter).getCurrentCategory(viewPager.currentItem)
 
-            Snackbar.make(viewPager, "NOTE ADDED", Snackbar.LENGTH_SHORT)
-                    //.setAction("Action", null)
-                    .show()
+    private fun prepareIntentForAddUpdateNewNote(currentCategory: Category): Intent {
+        return Intent(applicationContext, AddUpdateNoteActivity::class.java).apply {
+            putExtra(AddUpdateNoteActivity.KEY_CATEGORY_ID, currentCategory.id)
+            putExtra(AddUpdateNoteActivity.KEY_CATEGORY_NAME, currentCategory.name)
         }
     }
 

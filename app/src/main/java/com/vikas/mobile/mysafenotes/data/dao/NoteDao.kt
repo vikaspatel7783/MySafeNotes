@@ -17,7 +17,7 @@ interface NoteDao {
     fun getByCategory(categoryId: Long): LiveData<List<Note>>
 
     @Query("SELECT * FROM note_table WHERE id = :noteId")
-    suspend fun getNote(noteId: Long): Note
+    fun getNote(noteId: Long): LiveData<Note>
 
     @Delete
     suspend fun deleteNote(note: Note)
