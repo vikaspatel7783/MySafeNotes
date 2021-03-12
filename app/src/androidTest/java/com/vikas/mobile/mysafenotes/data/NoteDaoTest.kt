@@ -8,6 +8,7 @@ import com.vikas.mobile.mysafenotes.data.dao.CategoryDao
 import com.vikas.mobile.mysafenotes.data.dao.NoteDao
 import com.vikas.mobile.mysafenotes.data.entity.Category
 import com.vikas.mobile.mysafenotes.data.entity.Note
+import com.vikas.mobile.mysafenotes.getOrAwaitValue
 import kotlinx.coroutines.runBlocking
 import org.junit.*
 import org.junit.runner.RunWith
@@ -46,7 +47,7 @@ class NoteDaoTest {
             val bankNote = createNote(bankCategory.id, bankContent)
             val bankNoteId = noteDao.insert(bankNote)
 
-            val savedBankNote = noteDao.getNote(bankNoteId)
+            val savedBankNote = noteDao.getNote(bankNoteId).getOrAwaitValue()
             Assert.assertEquals(savedBankNote.categoryId, bankCategory.id)
             Assert.assertEquals(savedBankNote.noteContent, bankContent)
         }
@@ -65,8 +66,8 @@ class NoteDaoTest {
             val personalNote = createNote(personalCategory.id, personalContent)
             val personalNoteId = noteDao.insert(personalNote)
 
-            val savedBankNote = noteDao.getNote(bankNoteId)
-            val savedPersonalNote = noteDao.getNote(personalNoteId)
+            val savedBankNote = noteDao.getNote(bankNoteId).getOrAwaitValue()
+            val savedPersonalNote = noteDao.getNote(personalNoteId).getOrAwaitValue()
             Assert.assertEquals(2, noteDao.getAll().size)
             Assert.assertEquals(savedBankNote.noteContent, bankContent)
             Assert.assertEquals(savedPersonalNote.noteContent, personalContent)

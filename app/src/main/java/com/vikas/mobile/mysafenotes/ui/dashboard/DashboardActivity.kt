@@ -7,7 +7,6 @@ import com.google.android.material.floatingactionbutton.FloatingActionButton
 import com.google.android.material.tabs.TabLayout
 import androidx.viewpager.widget.ViewPager
 import androidx.appcompat.app.AppCompatActivity
-import com.google.android.material.snackbar.Snackbar
 import com.vikas.mobile.mysafenotes.R
 import com.vikas.mobile.mysafenotes.data.entity.Category
 import com.vikas.mobile.mysafenotes.data.entity.Note
@@ -47,7 +46,7 @@ class DashboardActivity : AppCompatActivity() {
             //(viewPager.adapter as CategoryPagerAdapter).notifyDataSetChanged()
         })
 
-        findViewById<FloatingActionButton>(R.id.fab).setOnClickListener {
+        findViewById<FloatingActionButton>(R.id.fab_add_category).setOnClickListener {
             AddCategoryDialogFragment.newInstance().show(supportFragmentManager, "TagAddCategory")
         }
 
