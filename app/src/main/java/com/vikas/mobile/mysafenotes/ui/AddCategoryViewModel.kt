@@ -4,6 +4,7 @@ import androidx.lifecycle.*
 import com.vikas.mobile.mysafenotes.data.Repository
 import com.vikas.mobile.mysafenotes.data.entity.Category
 import dagger.hilt.android.lifecycle.HiltViewModel
+import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 import javax.inject.Inject
 
@@ -13,7 +14,7 @@ class AddCategoryViewModel @Inject constructor() : ViewModel() {
     @Inject lateinit var repository: Repository
 
     fun addCategory(category: Category) {
-        viewModelScope.launch {
+        viewModelScope.launch(Dispatchers.IO) {
             repository.addCategory(category)
         }
     }

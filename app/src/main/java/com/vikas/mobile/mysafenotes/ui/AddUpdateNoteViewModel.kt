@@ -4,6 +4,7 @@ import androidx.lifecycle.*
 import com.vikas.mobile.mysafenotes.data.Repository
 import com.vikas.mobile.mysafenotes.data.entity.Note
 import dagger.hilt.android.lifecycle.HiltViewModel
+import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 import javax.inject.Inject
 
@@ -15,7 +16,7 @@ class AddUpdateNoteViewModel @Inject constructor() : ViewModel() {
     fun getNote(noteId: Long) = repository.getNote(noteId)
 
     fun addUpdateNote(note: Note) =
-        viewModelScope.launch {
+        viewModelScope.launch(Dispatchers.IO) {
             repository.addUpdateNote(note)
         }
 

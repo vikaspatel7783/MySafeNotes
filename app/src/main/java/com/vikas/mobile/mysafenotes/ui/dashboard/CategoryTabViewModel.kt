@@ -4,6 +4,7 @@ import androidx.lifecycle.*
 import com.vikas.mobile.mysafenotes.data.Repository
 import com.vikas.mobile.mysafenotes.data.entity.Note
 import dagger.hilt.android.lifecycle.HiltViewModel
+import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 import javax.inject.Inject
 
@@ -15,7 +16,7 @@ class CategoryTabViewModel @Inject constructor() : ViewModel() {
     fun getNotes(categoryId: Long) = repository.getNotes(categoryId)
 
     fun deleteNote(note: Note) =
-        viewModelScope.launch {
+        viewModelScope.launch(Dispatchers.IO) {
             repository.deleteNote(note)
         }
 
