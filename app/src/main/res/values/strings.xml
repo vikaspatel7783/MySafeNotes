@@ -10,4 +10,8 @@
 
     <string name="screen_title_add_note">ADD NEW NOTE</string>
     <string name="button_save_note">SAVE</string>
+
+    <string name="prompt_info_title">Authentication</string>
+    <string name="prompt_info_subtitle">Please login to get access</string>
+    <string name="prompt_info_description">SafeNotes is using Android biometric authentication</string>
 </resources>

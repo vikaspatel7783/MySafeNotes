@@ -2,12 +2,16 @@ package com.vikas.mobile.mysafenotes.ui.dashboard
 
 import android.content.Intent
 import android.os.Bundle
+import android.widget.Toast
 import androidx.activity.viewModels
 import com.google.android.material.floatingactionbutton.FloatingActionButton
 import com.google.android.material.tabs.TabLayout
 import androidx.viewpager.widget.ViewPager
 import androidx.appcompat.app.AppCompatActivity
 import com.vikas.mobile.mysafenotes.R
+import com.vikas.mobile.mysafenotes.authandcrypto.AppAuthCallback
+import com.vikas.mobile.mysafenotes.authandcrypto.BiometricPromptUtils
+import com.vikas.mobile.mysafenotes.authandcrypto.Crypto
 import com.vikas.mobile.mysafenotes.data.entity.Category
 import com.vikas.mobile.mysafenotes.data.entity.Note
 import com.vikas.mobile.mysafenotes.ui.AddCategoryDialogFragment
@@ -27,6 +31,20 @@ class DashboardActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_dashboard)
 
+        BiometricPromptUtils.showUserAuthentication(this,
+        object : AppAuthCallback {
+            override fun onAuthenticationSucceeded() {
+                doPostUserAuthentication()
+            }
+
+            override fun authenticationsNotPresent() {
+                //TODO("To be better handled")
+                Toast.makeText(this@DashboardActivity, "Authentications not provided on this device", Toast.LENGTH_LONG).show()
+            }
+        })
+    }
+
+    private fun doPostUserAuthentication() {
         fabAddNoteButton = findViewById(R.id.fab_add_note)
         viewPager = findViewById(R.id.view_pager)
         viewPager.adapter = CategoryPagerAdapter(this, supportFragmentManager, categoryList)
@@ -54,7 +72,6 @@ class DashboardActivity : AppCompatActivity() {
             showAddUpdateNoteActivity()
         }
     }
-
     private fun showAddUpdateNoteActivity() {
         startActivity(prepareIntentForAddUpdateNewNote(getCurrentCategory()))
     }
