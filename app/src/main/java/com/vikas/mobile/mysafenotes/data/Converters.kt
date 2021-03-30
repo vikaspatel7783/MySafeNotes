@@ -18,13 +18,13 @@ class Converters {
     // To UI <--- Room db
     @TypeConverter
     fun toMaskedData(data: String): MaskedData {
-        return MaskedData(Crypto.INSTANCE.decrypt(data))
+        return MaskedData(Crypto.decrypt(data))
     }
 
     // From UI --> Room db
     @TypeConverter
     fun fromMaskedData(maskedData: MaskedData): String {
-        return Crypto.INSTANCE.encrypt(maskedData.content)
+        return Crypto.encrypt(maskedData.content)
     }
 
 }

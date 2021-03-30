@@ -8,7 +8,7 @@ import javax.crypto.KeyGenerator
 import javax.crypto.SecretKey
 import javax.crypto.spec.IvParameterSpec
 
-class Crypto private constructor() {
+object Crypto {
 
     fun encrypt(data: String): String {
         KeystoreHelper.loadKeystore()
@@ -28,10 +28,7 @@ class Crypto private constructor() {
         }
     }
 
-    companion object {
-        private const val AES_CIPHER = "$KEY_ALGORITHM_AES/$BLOCK_MODE_CBC/$ENCRYPTION_PADDING_PKCS7"
-        val INSTANCE: Crypto = Crypto()
-    }
+    private const val AES_CIPHER = "$KEY_ALGORITHM_AES/$BLOCK_MODE_CBC/$ENCRYPTION_PADDING_PKCS7"
 
      object KeystoreHelper {
 
