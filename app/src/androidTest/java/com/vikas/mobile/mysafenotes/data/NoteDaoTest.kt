@@ -7,6 +7,7 @@ import androidx.test.platform.app.InstrumentationRegistry
 import com.vikas.mobile.mysafenotes.data.dao.CategoryDao
 import com.vikas.mobile.mysafenotes.data.dao.NoteDao
 import com.vikas.mobile.mysafenotes.data.entity.Category
+import com.vikas.mobile.mysafenotes.data.entity.MaskedData
 import com.vikas.mobile.mysafenotes.data.entity.Note
 import com.vikas.mobile.mysafenotes.getOrAwaitValue
 import kotlinx.coroutines.runBlocking
@@ -36,8 +37,8 @@ class NoteDaoTest {
         database.close()
     }
 
-    private fun createCategory(name: String) = Category(name = name)
-    private fun createNote(categoryId: Long, noteContent: String) = Note(categoryId = categoryId, noteContent = noteContent)
+    private fun createCategory(name: String) = Category(name = MaskedData(name))
+    private fun createNote(categoryId: Long, noteContent: String) = Note(categoryId = categoryId, noteContent = MaskedData(noteContent))
 
     @Test
     fun testNoteInsert() {
@@ -49,7 +50,7 @@ class NoteDaoTest {
 
             val savedBankNote = noteDao.getNote(bankNoteId).getOrAwaitValue()
             Assert.assertEquals(savedBankNote.categoryId, bankCategory.id)
-            Assert.assertEquals(savedBankNote.noteContent, bankContent)
+            Assert.assertEquals(savedBankNote.noteContent.content, bankContent)
         }
     }
 
@@ -69,8 +70,8 @@ class NoteDaoTest {
             val savedBankNote = noteDao.getNote(bankNoteId).getOrAwaitValue()
             val savedPersonalNote = noteDao.getNote(personalNoteId).getOrAwaitValue()
             Assert.assertEquals(2, noteDao.getAll().size)
-            Assert.assertEquals(savedBankNote.noteContent, bankContent)
-            Assert.assertEquals(savedPersonalNote.noteContent, personalContent)
+            Assert.assertEquals(savedBankNote.noteContent.content, bankContent)
+            Assert.assertEquals(savedPersonalNote.noteContent.content, personalContent)
         }
     }
 

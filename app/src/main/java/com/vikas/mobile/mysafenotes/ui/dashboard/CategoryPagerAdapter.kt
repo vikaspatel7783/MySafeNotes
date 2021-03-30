@@ -23,7 +23,7 @@ class CategoryPagerAdapter(
     }
 
     override fun getPageTitle(position: Int): CharSequence? {
-        return allCategories[position].name.toUpperCase(Locale.ROOT)
+        return allCategories[position].name.content.toUpperCase(Locale.ROOT)
     }
 
     fun getCurrentCategory(position: Int): Category {

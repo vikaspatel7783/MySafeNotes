@@ -4,6 +4,7 @@ import android.content.Context
 import androidx.room.Database
 import androidx.room.Room
 import androidx.room.RoomDatabase
+import androidx.room.TypeConverters
 import androidx.sqlite.db.SupportSQLiteDatabase
 import com.vikas.mobile.mysafenotes.data.dao.CategoryDao
 import com.vikas.mobile.mysafenotes.data.dao.NoteDao
@@ -14,6 +15,7 @@ import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 
 @Database(entities = [Category::class, Note::class], version = 1, exportSchema = false)
+@TypeConverters(Converters::class)
 abstract class MySafeNotesDatabase: RoomDatabase() {
 
     abstract fun categoryDao(): CategoryDao

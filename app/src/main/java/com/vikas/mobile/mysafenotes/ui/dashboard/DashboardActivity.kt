@@ -53,7 +53,7 @@ class DashboardActivity : AppCompatActivity() {
 
         dashboardViewModel.getAllCategories().observe(this, { receivedCategories ->
             categoryMap = receivedCategories.map { category ->
-                category.id to category.name
+                category.id to category.name.content
             }.toMap()
 
             categoryList = receivedCategories
@@ -89,7 +89,7 @@ class DashboardActivity : AppCompatActivity() {
     private fun prepareIntentForAddUpdateNewNote(currentCategory: Category): Intent {
         return Intent(applicationContext, AddUpdateNoteActivity::class.java).apply {
             putExtra(AddUpdateNoteActivity.KEY_CATEGORY_ID, currentCategory.id)
-            putExtra(AddUpdateNoteActivity.KEY_CATEGORY_NAME, currentCategory.name)
+            putExtra(AddUpdateNoteActivity.KEY_CATEGORY_NAME, currentCategory.name.content)
         }
     }
 

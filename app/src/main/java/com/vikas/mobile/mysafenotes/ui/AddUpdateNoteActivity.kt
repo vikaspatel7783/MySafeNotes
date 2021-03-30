@@ -8,6 +8,7 @@ import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.widget.addTextChangedListener
 import com.vikas.mobile.mysafenotes.R
+import com.vikas.mobile.mysafenotes.data.entity.MaskedData
 import com.vikas.mobile.mysafenotes.data.entity.Note
 import dagger.hilt.android.AndroidEntryPoint
 import java.util.*
@@ -29,7 +30,7 @@ class AddUpdateNoteActivity : AppCompatActivity() {
 
         if (this.getNoteId() != -1L) {
             addUpdateNoteViewModel.getNote(getNoteId()).observe(this, {
-                findViewById<EditText>(R.id.edtTextNote).setText(it.noteContent)
+                findViewById<EditText>(R.id.edtTextNote).setText(it.noteContent.content)
             })
         }
 
@@ -45,7 +46,7 @@ class AddUpdateNoteActivity : AppCompatActivity() {
 
             val noteContent = editTextNoteContent.text.toString()
 
-            val noteObj = Note(categoryId = getCategoryId(), noteContent = noteContent)
+            val noteObj = Note(categoryId = getCategoryId(), noteContent = MaskedData(noteContent))
             if (isNoteExist()) {
                 noteObj.id = getNoteId()
             }

@@ -43,7 +43,7 @@ class NoteListAdapter(private val dataSet: List<Note>,
 
     override fun onBindViewHolder(viewHolder: ViewHolder, position: Int) {
         val note = dataSet[position]
-        viewHolder.noteContentView.text = note.noteContent
+        viewHolder.noteContentView.text = note.noteContent.content
         viewHolder.noteContainerView.tag = note
         viewHolder.noteDeleteView.tag = note
     }

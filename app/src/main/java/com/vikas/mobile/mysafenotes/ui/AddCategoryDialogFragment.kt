@@ -12,6 +12,7 @@ import androidx.core.widget.addTextChangedListener
 import androidx.fragment.app.viewModels
 import com.vikas.mobile.mysafenotes.R
 import com.vikas.mobile.mysafenotes.data.entity.Category
+import com.vikas.mobile.mysafenotes.data.entity.MaskedData
 import dagger.hilt.android.AndroidEntryPoint
 import java.util.*
 
@@ -44,7 +45,7 @@ class AddCategoryDialogFragment : BottomSheetDialogFragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         addCategoryViewModel.fetchAllCategories().observe(this, { categoryList ->
             categoryList.forEach { category ->
-                allCategoriesName.add(category.name.toLowerCase(Locale.ROOT))
+                allCategoriesName.add(category.name.content.toLowerCase(Locale.ROOT))
             }
         })
 
@@ -53,7 +54,7 @@ class AddCategoryDialogFragment : BottomSheetDialogFragment() {
         }
 
         buttonAdd.setOnClickListener {
-            Category(getKeyedCategoryName()).run {
+            Category(MaskedData(getKeyedCategoryName())).run {
                 addCategoryViewModel.addCategory(this)
             }
             dismiss()

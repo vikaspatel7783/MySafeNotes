@@ -44,15 +44,10 @@ class AddNoteTest {
         onView(withId(R.id.fab_add_note)).perform(click())
         onView(withId(R.id.edtTextNote)).perform(typeText("This are my personal notes"))
         onView(withId(R.id.buttonAddUpdateNote)).perform(click())
-        // When - note details is entered and saved
-        onView(withId(R.id.fab_add_note)).perform(click())
-        onView(withId(R.id.edtTextNote)).perform(typeText("Everyday we should wake up early"))
-        onView(withId(R.id.buttonAddUpdateNote)).perform(click())
 
         // Then - category should be displayed on dashboard screen
 //        onView(withId(R.id.note_content_item)).perform().check(matches(withText("This are my personal notes")))
         onView(withText("This are my personal notes")).check(matches(isDisplayed()))
-        onView(withText("Everyday we should wake up early")).check(matches(isDisplayed()))
     }
 
 }

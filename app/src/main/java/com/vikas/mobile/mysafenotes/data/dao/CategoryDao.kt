@@ -21,7 +21,4 @@ interface CategoryDao {
 
     @Query("SELECT * FROM category_table WHERE id = :id")
     suspend fun get(id: Long): Category
-
-    @Query("SELECT EXISTS(SELECT 1 FROM category_table WHERE name = :categoryName LIMIT 1)")
-    suspend fun isExist(categoryName: String): Boolean
 }
