@@ -2,11 +2,12 @@ package com.vikas.mobile.mysafenotes.ui.dashboard
 
 import android.content.Intent
 import android.os.Bundle
+import android.view.View
+import android.widget.TextView
 import android.widget.Toast
 import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
 import androidx.viewpager.widget.ViewPager
-import com.google.android.material.floatingactionbutton.FloatingActionButton
 import com.google.android.material.tabs.TabLayout
 import com.vikas.mobile.mysafenotes.R
 import com.vikas.mobile.mysafenotes.authandcrypto.AppAuthCallback
@@ -22,7 +23,7 @@ class DashboardActivity : AppCompatActivity() {
 
     private val dashboardViewModel: DashboardViewModel by viewModels()
     private lateinit var viewPager: ViewPager
-    private lateinit var fabAddNoteButton: FloatingActionButton
+    private lateinit var fabAddNoteButton: TextView
     private var categoryMap = emptyMap<Long, String>()
     private var categoryList = emptyList<Category>()
 
@@ -56,18 +57,18 @@ class DashboardActivity : AppCompatActivity() {
             }.toMap()
 
             categoryList = receivedCategories
-            fabAddNoteButton.isEnabled = categoryList.isNotEmpty()
+            fabAddNoteButton.visibility = if (categoryList.isEmpty()) View.INVISIBLE else View.VISIBLE
 
             //TODO: notifyDatasetChange not working. Should not create new instance everytime when data updates
             viewPager.adapter = CategoryPagerAdapter(this, supportFragmentManager, categoryList)
             //(viewPager.adapter as CategoryPagerAdapter).notifyDataSetChanged()
         })
 
-        findViewById<FloatingActionButton>(R.id.fab_add_category).setOnClickListener {
+        findViewById<TextView>(R.id.fab_add_category).setOnClickListener {
             AddCategoryDialogFragment.newInstance().show(supportFragmentManager, "TagAddCategory")
         }
 
-        findViewById<FloatingActionButton>(R.id.fab_add_note).setOnClickListener {
+        findViewById<TextView>(R.id.fab_add_note).setOnClickListener {
             showAddUpdateNoteActivity()
         }
     }

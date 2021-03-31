@@ -6,13 +6,13 @@ import androidx.room.Room
 import androidx.room.RoomDatabase
 import androidx.room.TypeConverters
 import androidx.sqlite.db.SupportSQLiteDatabase
+import androidx.work.OneTimeWorkRequestBuilder
+import androidx.work.WorkManager
 import com.vikas.mobile.mysafenotes.data.dao.CategoryDao
 import com.vikas.mobile.mysafenotes.data.dao.NoteDao
 import com.vikas.mobile.mysafenotes.data.entity.Category
 import com.vikas.mobile.mysafenotes.data.entity.Note
-import kotlinx.coroutines.CoroutineScope
-import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.launch
+import com.vikas.mobile.mysafenotes.worker.DefaultNotesSeedWorker
 
 @Database(entities = [Category::class, Note::class], version = 1, exportSchema = false)
 @TypeConverters(Converters::class)
@@ -40,12 +40,9 @@ abstract class MySafeNotesDatabase: RoomDatabase() {
                     object : RoomDatabase.Callback() {
                         override fun onCreate(db: SupportSQLiteDatabase) {
                             super.onCreate(db)
-//                            val db1 = MySafeNotesDatabase.getInstance(context)
-//                            CoroutineScope(Dispatchers.IO).launch {
-//                                db1.categoryDao().insert(Category("BANKING"))
-//                                db1.categoryDao().insert(Category("PERSONAL"))
-//                                db1.categoryDao().insert(Category("FRIENDS"))
-//                            }
+//                            CoroutineScope(Dispatchers.IO).launch {}
+                            val request = OneTimeWorkRequestBuilder<DefaultNotesSeedWorker>().build()
+                            WorkManager.getInstance(context).enqueue(request)
                         }
                     }
                 )
