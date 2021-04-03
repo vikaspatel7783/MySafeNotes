@@ -9,9 +9,9 @@ import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
 import androidx.viewpager.widget.ViewPager
 import com.google.android.material.tabs.TabLayout
+import com.vikas.mobile.authandcrypto.AppAuthCallback
+import com.vikas.mobile.authandcrypto.BiometricPromptUtils
 import com.vikas.mobile.mysafenotes.R
-import com.vikas.mobile.mysafenotes.authandcrypto.AppAuthCallback
-import com.vikas.mobile.mysafenotes.authandcrypto.BiometricPromptUtils
 import com.vikas.mobile.mysafenotes.data.entity.Category
 import com.vikas.mobile.mysafenotes.data.entity.Note
 import com.vikas.mobile.mysafenotes.ui.AddCategoryDialogFragment

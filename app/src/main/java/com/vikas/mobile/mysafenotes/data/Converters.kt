@@ -1,7 +1,7 @@
 package com.vikas.mobile.mysafenotes.data
 
 import androidx.room.TypeConverter
-import com.vikas.mobile.mysafenotes.authandcrypto.Crypto
+import com.vikas.mobile.authandcrypto.Crypto
 import com.vikas.mobile.mysafenotes.data.entity.MaskedData
 
 /**
