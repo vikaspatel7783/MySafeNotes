@@ -1,11 +1,12 @@
 package com.vikas.mobile.mysafenotes.ui.dashboard
 
+import android.content.DialogInterface
 import android.content.Intent
 import android.os.Bundle
 import android.view.View
 import android.widget.TextView
-import android.widget.Toast
 import androidx.activity.viewModels
+import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
 import androidx.viewpager.widget.ViewPager
 import com.google.android.material.tabs.TabLayout
@@ -38,8 +39,14 @@ class DashboardActivity : AppCompatActivity() {
             }
 
             override fun authenticationsNotPresent() {
-                //TODO("To be better handled")
-                Toast.makeText(this@DashboardActivity, "Authentications not provided on this device", Toast.LENGTH_LONG).show()
+                AlertDialog.Builder(this@DashboardActivity)
+                        .setTitle(getString(R.string.error_no_authentication_title))
+                        .setMessage(getString(R.string.error_no_authentication_method))
+                        .setCancelable(false)
+                        .setPositiveButton(android.R.string.ok) { _: DialogInterface, _: Int ->
+                            finish()
+                        }
+                        .show()
             }
         })
     }
@@ -47,8 +54,9 @@ class DashboardActivity : AppCompatActivity() {
     private fun doPostUserAuthentication() {
         fabAddNoteButton = findViewById(R.id.fab_add_note)
         viewPager = findViewById(R.id.view_pager)
-        viewPager.adapter = CategoryPagerAdapter(this, supportFragmentManager, categoryList)
+        viewPager.adapter = CategoryPagerAdapter(supportFragmentManager, categoryList)
         val tabs: TabLayout = findViewById(R.id.tabs)
+        viewPager.adapter = CategoryPagerAdapter(supportFragmentManager, categoryList)
         tabs.setupWithViewPager(viewPager)
 
         dashboardViewModel.getAllCategories().observe(this, { receivedCategories ->
@@ -59,9 +67,8 @@ class DashboardActivity : AppCompatActivity() {
             categoryList = receivedCategories
             fabAddNoteButton.visibility = if (categoryList.isEmpty()) View.INVISIBLE else View.VISIBLE
 
-            //TODO: notifyDatasetChange not working. Should not create new instance everytime when data updates
-            viewPager.adapter = CategoryPagerAdapter(this, supportFragmentManager, categoryList)
-            //(viewPager.adapter as CategoryPagerAdapter).notifyDataSetChanged()
+            (viewPager.adapter as CategoryPagerAdapter).setData(categoryList)
+            (viewPager.adapter as CategoryPagerAdapter).notifyDataSetChanged()
         })
 
         findViewById<TextView>(R.id.fab_add_category).setOnClickListener {

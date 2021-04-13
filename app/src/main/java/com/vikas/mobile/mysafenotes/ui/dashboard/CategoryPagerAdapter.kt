@@ -1,6 +1,5 @@
 package com.vikas.mobile.mysafenotes.ui.dashboard
 
-import android.content.Context
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentManager
 import androidx.fragment.app.FragmentPagerAdapter
@@ -12,9 +11,8 @@ import java.util.*
  * one of the sections/tabs/pages.
  */
 class CategoryPagerAdapter(
-    private val context: Context,
-    manager: FragmentManager,
-    private val allCategories: List<Category>
+        manager: FragmentManager,
+        private var allCategories: List<Category>
 ) :
     FragmentPagerAdapter(manager, BEHAVIOR_RESUME_ONLY_CURRENT_FRAGMENT) {
 
@@ -32,6 +30,10 @@ class CategoryPagerAdapter(
 
     override fun getCount(): Int {
         return allCategories.size
+    }
+
+    fun setData(allCategories: List<Category>) {
+        this.allCategories = allCategories
     }
 
 }

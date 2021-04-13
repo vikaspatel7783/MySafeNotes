@@ -35,14 +35,17 @@ class CategoryTabFragment(private val categoryId: Long) : Fragment() {
 
         categoryTabViewModel.getNotes(categoryId).observe(viewLifecycleOwner, { it ->
 
-            val noteListAdapter = NoteListAdapter(it, onClick = {
+            val noteListAdapter = NoteListAdapter(
+                    dataSet = it,
+            onClick = {
                 (activity as DashboardActivity).onNoteClicked(it)
-            }) {
+            },
+            onDelete = {
                 Snackbar.make(root, "DELETE NOTE ?", Snackbar.LENGTH_LONG)
                         .setAction("YES") { _ ->
                             categoryTabViewModel.deleteNote(it)
                         }.show()
-            }
+            })
 
             recyclerView.layoutManager = LinearLayoutManager(context)
             recyclerView.adapter = noteListAdapter
