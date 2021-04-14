@@ -11,7 +11,7 @@ on:
    # branches: [ master ]
 
   # Allows you to run this workflow manually from the Actions tab
-  workflow_dispatch:
+ # workflow_dispatch:
 
 # A workflow run is made up of one or more jobs that can run sequentially or in parallel
 jobs:
@@ -27,13 +27,13 @@ jobs:
       - uses: actions/checkout@v2        
         
       # Run unit tests
-      - name: run unit tests
-        run: bash ./gradlew test --stacktrace
+     # - name: run unit tests
+     #   run: bash ./gradlew test --stacktrace
 
       # Build apk
-      - name: build apk
-        run: bash ./gradlew assembleDebug --stacktrace
+     # - name: build apk
+     #   run: bash ./gradlew assembleDebug --stacktrace
         
       # Upload apk
-      - name: upload apk artifact
-        uses: actions/upload-artifact@v2.2.0 
+   #   - name: upload apk artifact
+    #    uses: actions/upload-artifact@v2.2.0 
