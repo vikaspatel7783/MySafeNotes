@@ -8,32 +8,30 @@ on:
 jobs:
 
   checkoutAndtest:
-    name: Checkout and Unit Tests
+    name: Checkout, Unit Tests, Build and Upload
     runs-on: ubuntu-18.04
 
     steps:
+      
+      # Check-out
       - uses: actions/checkout@v1
       - name: Set up JDK 1.8
         uses: actions/setup-java@v1
         with:
           java-version: 1.8
+          
+          
+      # Unit tests
       - name: Run Unit tests
         run: bash ./gradlew test --stacktrace
 
-  apk:
-    name: Generate and Upload debug APK
-    runs-on: ubuntu-18.04
-
-    steps:
-      - uses: actions/checkout@v1
-      - name: Set up JDK 1.8
-        uses: actions/setup-java@v1
-        with:
-          java-version: 1.8
-
+ 
+      # Build debug apk
       - name: Assemble app debug APK
         run: bash ./gradlew assembleDebug --stacktrace
        
+       
+      # Upload apk 
       - name: Upload app APK
         uses: actions/upload-artifact@v1
         with:
