@@ -5,8 +5,8 @@ plugins {
     id 'dagger.hilt.android.plugin'
 }
 
-def githubCredentials = new Properties()
-githubCredentials.load(new FileInputStream(rootProject.file("github.properties")))
+//def githubCredentials = new Properties()
+//githubCredentials.load(new FileInputStream(rootProject.file("github.properties")))
 
 
 android {
@@ -37,24 +37,24 @@ android {
         jvmTarget = '1.8'
     }
 
-    repositories {
-        maven {
-            name = "GitHubPackages"
-            /*  Configure path to the library hosted on GitHub Packages Registry
-             *  Replace UserID with package owner userID and REPOSITORY with the repository name
-             *  e.g. "https://maven.pkg.github.com/enefce/AndroidLibraryForGitHubPackagesDemo"*/
+    //repositories {
+     //   maven {
+     //       name = "GitHubPackages"
+     //       /*  Configure path to the library hosted on GitHub Packages Registry
+     //        *  Replace UserID with package owner userID and REPOSITORY with the repository name
+     //        *  e.g. "https://maven.pkg.github.com/enefce/AndroidLibraryForGitHubPackagesDemo"*/
 
-            url = uri("https://maven.pkg.github.com/vikaspatel7783/AuthAndCryptoLib")
-            credentials {
-                /** Create github.properties in root project folder file with
-                 ** gpr.usr=GITHUB_USER_ID & gpr.key=PERSONAL_ACCESS_TOKEN
-                 ** Or set env variable GPR_USER & GPR_API_KEY if not adding a properties file**/
+      //      url = uri("https://maven.pkg.github.com/vikaspatel7783/AuthAndCryptoLib")
+      //      credentials {
+      //          /** Create github.properties in root project folder file with
+      //           ** gpr.usr=GITHUB_USER_ID & gpr.key=PERSONAL_ACCESS_TOKEN
+      //           ** Or set env variable GPR_USER & GPR_API_KEY if not adding a properties file**/
 
-                username = githubCredentials['gpr.usr']
-                password = githubCredentials['gpr.key']
-            }
-        }
-    }
+      //          username = githubCredentials['gpr.usr']
+      //          password = githubCredentials['gpr.key']
+      //      }
+      //  }
+   // }
 }
 
 dependencies {
