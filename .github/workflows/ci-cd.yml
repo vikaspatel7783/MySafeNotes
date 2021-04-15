@@ -20,6 +20,16 @@ jobs:
         with:
           java-version: 1.8
           
+      # github credentials
+      - name: Access username
+        env:
+          username: ${{ secrets.username }}
+        run: echo username=\"$username\" > ./local.properties
+        
+      - name: Access token
+        env:
+          password: ${{ secrets.password }}
+        run: echo password=\"$password\" > ./local.properties
           
       # Unit tests
       - name: Run Unit tests
