@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:padding="15dp">
+
+    <TextView
+        android:id="@+id/labelAddCategory"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textStyle="bold"
+        android:textColor="@color/design_default_color_on_secondary"
+        android:text="@string/label_add_category" />
+
+    <TextView
+        android:id="@+id/textAddCategoryError"
+        android:layout_below="@+id/labelAddCategory"
+        android:gravity="right"
+        android:textColor="@android:color/holo_red_dark"
+        android:visibility="gone"
+        android:layout_marginTop="10dp"
+        android:text="@string/error_category_already_exist"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"/>
+
+    <EditText
+        android:id="@+id/edtTextAddCategory"
+        android:layout_below="@+id/textAddCategoryError"
+        android:paddingTop="8dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:ems="10"
+        android:maxLength="20"
+        android:maxLines="1"
+        android:inputType="textPersonName" />
+
+    <RelativeLayout
+        android:id="@+id/containerAddCategoryButtons"
+        android:layout_below="@+id/edtTextAddCategory"
+        android:layout_marginTop="30dp"
+        android:layout_marginBottom="30dp"
+        android:layout_alignParentEnd="true"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content">
+
+        <Button
+            android:id="@+id/buttonAddCategoryCancel"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/button_add_category_cancel" />
+
+        <Button
+            android:id="@+id/buttonAddCategoryAdd"
+            android:layout_toEndOf="@+id/buttonAddCategoryCancel"
+            android:layout_marginStart="15dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:enabled="false"
+            android:text="@string/button_add_category_add"
+            tools:ignore="RtlSymmetry" />
+
+    </RelativeLayout>
+
+
+</RelativeLayout>

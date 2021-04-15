@@ -1,3 +1,24 @@
 <resources>
     <string name="app_name">MySafeNotes</string>
+    <string name="screen_title_dashboard">My safe notes</string>
+    <string name="title_activity_dashboard">DashboardActivity</string>
+
+    <string name="appbar_add_category">ADD CATEGORY</string>
+    <string name="appbar_add_note">ADD NOTE</string>
+
+    <string name="label_add_category">CATEGORY NAME</string>
+    <string name="button_add_category_cancel">CANCEL</string>
+    <string name="button_add_category_add">ADD</string>
+
+    <string name="error_category_already_exist">This category already exist</string>
+
+    <string name="screen_title_add_note">ADD NEW NOTE</string>
+    <string name="button_save_note">SAVE</string>
+
+    <string name="prompt_info_title">Authentication</string>
+    <string name="prompt_info_subtitle">Please login to get access</string>
+    <string name="prompt_info_description">SafeNotes is using Android biometric authentication</string>
+
+    <string name="error_no_authentication_title">No authentication</string>
+    <string name="error_no_authentication_method">Please set Biometric, PIN or Password to protect your device data for better security.</string>
 </resources>

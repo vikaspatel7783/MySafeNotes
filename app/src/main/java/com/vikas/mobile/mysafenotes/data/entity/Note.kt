@@ -22,7 +22,7 @@ data class Note (
         var categoryId: Long,
 
         @ColumnInfo(name = "content")
-        var noteContent: String = "DEFAULT"
+        var noteContent: MaskedData
 ) {
     @PrimaryKey(autoGenerate = true)
     @ColumnInfo(name = "id")

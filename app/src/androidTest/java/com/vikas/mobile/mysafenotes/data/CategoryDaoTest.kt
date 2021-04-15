@@ -6,6 +6,8 @@ import androidx.test.ext.junit.runners.AndroidJUnit4
 import androidx.test.platform.app.InstrumentationRegistry
 import com.vikas.mobile.mysafenotes.data.dao.CategoryDao
 import com.vikas.mobile.mysafenotes.data.entity.Category
+import com.vikas.mobile.mysafenotes.data.entity.MaskedData
+import com.vikas.mobile.mysafenotes.getOrAwaitValue
 import kotlinx.coroutines.runBlocking
 import org.junit.*
 import org.junit.runner.RunWith
@@ -31,7 +33,7 @@ class CategoryDaoTest {
         database.close()
     }
 
-    private fun createCategory(name: String) = Category(name = name)
+    private fun createCategory(name: String) = Category(name = MaskedData(name))
 
     @Test
     fun testCategoryInsert() {
@@ -40,27 +42,8 @@ class CategoryDaoTest {
             .let {
                 val insertedId = categoryDao.insert(it)
                 val category = categoryDao.get(insertedId)
-                Assert.assertEquals("BANKING", category.name)
+                Assert.assertEquals("BANKING", category.name.content)
             }
-        }
-    }
-
-    @Test
-    fun testCategoryExist() {
-        createCategory("BANKING").let {
-            runBlocking {
-                categoryDao.insert(it)
-                val isExists = categoryDao.isExist("BANKING")
-                Assert.assertTrue(isExists)
-            }
-        }
-    }
-
-    @Test
-    fun testCategoryDoesNotExist() {
-        runBlocking {
-            val isExist = categoryDao.isExist("BANKING")
-            Assert.assertFalse(isExist)
         }
     }
 
@@ -72,8 +55,7 @@ class CategoryDaoTest {
 
         runBlocking {
             categoryDao.insertAll(listOf(bankingCategory, personalCategory, friendsCategory))
-            val count = categoryDao.getAll().size
-            Assert.assertEquals(3, count)
+            Assert.assertEquals(3, categoryDao.getAll().getOrAwaitValue().size)
         }
     }
 }

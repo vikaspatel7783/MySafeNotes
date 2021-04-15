@@ -15,7 +15,7 @@ import androidx.room.PrimaryKey
 @Entity(tableName = "category_table", indices = [Index(value = ["name"], unique = true)])
 data class Category (
     @ColumnInfo(name = "name")
-    var name: String = "DEFAULT"
+    var name: MaskedData
 ) {
     @PrimaryKey(autoGenerate = true)
     @ColumnInfo(name = "id")
