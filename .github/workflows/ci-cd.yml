@@ -23,12 +23,12 @@ jobs:
       # github credentials
       - name: Access username
         env:
-          username: ${{ secrets.username }}
+          username: ${{ secrets.USERNAME }}
         run: echo username=\"$username\" > ./local.properties
         
       - name: Access token
         env:
-          password: ${{ secrets.password }}
+          password: ${{ secrets.PASSWORD }}
         run: echo password=\"$password\" > ./local.properties
           
       # Unit tests
