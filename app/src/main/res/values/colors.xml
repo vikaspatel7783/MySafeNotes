@@ -10,4 +10,5 @@
 
     <color name="note_background">#E0E0E0</color>
     <color name="note_content">#303030</color>
+    <color name="note_header">@color/purple_700</color>
 </resources>

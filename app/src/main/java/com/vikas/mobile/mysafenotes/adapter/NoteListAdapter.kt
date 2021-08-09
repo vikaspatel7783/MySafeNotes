@@ -21,6 +21,7 @@ class NoteListAdapter(private val dataSet: List<Note>,
     class ViewHolder(view: View) : RecyclerView.ViewHolder(view) {
         val noteContainerView: ViewGroup = view.findViewById(R.id.containerNoteListItem)
         val noteDeleteView: ImageButton = view.findViewById(R.id.note_delete)
+        val noteHeaderView: TextView = view.findViewById(R.id.note_content_header)
         val noteContentView: TextView = view.findViewById(R.id.note_content_item)
     }
 
@@ -43,9 +44,21 @@ class NoteListAdapter(private val dataSet: List<Note>,
 
     override fun onBindViewHolder(viewHolder: ViewHolder, position: Int) {
         val note = dataSet[position]
-        viewHolder.noteContentView.text = note.noteContent.content
+        viewHolder.noteHeaderView.text = getHeaderText(note.noteContent.content)
+        viewHolder.noteContentView.text = getContentText(note.noteContent.content)
         viewHolder.noteContainerView.tag = note
         viewHolder.noteDeleteView.tag = note
+    }
+
+    private fun getHeaderText(noteContent: String): String {
+        val defaultHeaderCharsCountLength = 35
+        return noteContent.substring(startIndex = 0,
+                endIndex = if (noteContent.indexOf("\n") == -1) defaultHeaderCharsCountLength else noteContent.indexOf("\n"))
+    }
+
+    private fun getContentText(noteContent: String): String {
+        return noteContent.substring(startIndex = if (noteContent.indexOf("\n") == -1) 0 else noteContent.indexOf("\n")+1,
+            endIndex = noteContent.length)
     }
 
     override fun getItemCount() = dataSet.size
