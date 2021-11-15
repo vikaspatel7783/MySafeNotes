@@ -3,8 +3,9 @@
     <string name="screen_title_dashboard">My safe notes</string>
     <string name="title_activity_dashboard">DashboardActivity</string>
 
-    <string name="appbar_add_category">ADD CATEGORY</string>
-    <string name="appbar_add_note">ADD NOTE</string>
+    <string name="appbar_add_category">Add new category</string>
+    <string name="appbar_add_note">Add new note</string>
+    <string name="appbar_delete_category">Delete category</string>
 
     <string name="label_add_category">CATEGORY NAME</string>
     <string name="button_add_category_cancel">CANCEL</string>
@@ -18,6 +19,7 @@
     <string name="prompt_info_title">Authentication</string>
     <string name="prompt_info_subtitle">Please login to get access</string>
     <string name="prompt_info_description">SafeNotes is using Android biometric authentication</string>
+    <string name="prompt_confirm_delete_category">Deleting %1$s will delete all notes, are you sure ?</string>
 
     <string name="error_no_authentication_title">No authentication</string>
     <string name="error_no_authentication_method">Please set Biometric, PIN or Password to protect your device data for better security.</string>

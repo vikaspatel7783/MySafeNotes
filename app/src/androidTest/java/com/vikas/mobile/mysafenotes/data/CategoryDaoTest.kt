@@ -58,4 +58,17 @@ class CategoryDaoTest {
             Assert.assertEquals(3, categoryDao.getAll().getOrAwaitValue().size)
         }
     }
+
+    @Test
+    fun testCategoryDelete() {
+        runBlocking {
+            createCategory("BANKING")
+                .let {
+                    val insertedId = categoryDao.insert(it)
+                    categoryDao.delete(insertedId)
+                    val bankingCategory = categoryDao.get(insertedId)
+                    Assert.assertNull(bankingCategory)
+                }
+        }
+    }
 }

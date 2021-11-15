@@ -41,7 +41,7 @@ class CategoryTabFragment(private val categoryId: Long) : Fragment() {
                 (activity as DashboardActivity).onNoteClicked(it)
             },
             onDelete = {
-                Snackbar.make(root, "DELETE NOTE ?", Snackbar.LENGTH_LONG)
+                Snackbar.make(root, "Delete note ?", Snackbar.LENGTH_LONG)
                         .setAction("YES") { _ ->
                             categoryTabViewModel.deleteNote(it)
                         }.show()

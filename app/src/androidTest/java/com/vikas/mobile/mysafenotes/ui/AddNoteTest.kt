@@ -1,7 +1,9 @@
 package com.vikas.mobile.mysafenotes.ui
 
 import android.content.Context
+import androidx.test.core.app.ApplicationProvider
 import androidx.test.espresso.Espresso.onView
+import androidx.test.espresso.Espresso.openActionBarOverflowOrOptionsMenu
 import androidx.test.espresso.action.ViewActions.*
 import androidx.test.espresso.assertion.ViewAssertions.doesNotExist
 import androidx.test.espresso.assertion.ViewAssertions.matches
@@ -41,25 +43,27 @@ class AddNoteTest {
         val noteContentUpdated = "MyBank\nAccount: 987654321\nPassword: 111***000BBB\nType: Savings"
 
         // add category
-        onView(withId(R.id.fab_add_category)).perform(click())
+        openActionBarOverflowOrOptionsMenu(ApplicationProvider.getApplicationContext())
+        onView(withText(context.getString(R.string.appbar_add_category))).perform(click())
         onView(withId(R.id.edtTextAddCategory)).perform(typeText(categoryName), closeSoftKeyboard())
         onView(withId(R.id.buttonAddCategoryAdd)).perform(click())
 
         // add note under category
-        onView(withId(R.id.fab_add_note)).perform(click())
+        openActionBarOverflowOrOptionsMenu(ApplicationProvider.getApplicationContext())
+        onView(withText(context.getString(R.string.appbar_add_note))).perform(click())
         onView(withId(R.id.edtTextNote)).perform(typeText(noteContent))
         onView(withId(R.id.buttonAddUpdateNote)).perform(click())
 
         // onView(withId(R.id.note_content_item)).perform().check(matches(withText("This are my personal notes")))
-        onView(withText(noteContent)).check(matches(isDisplayed()))
+        onView(withText(getHeaderText(noteContent))).check(matches(isDisplayed()))
 
         // update note content
-        onView(withText(noteContent)).perform(click())
+        onView(withText(getContentText(noteContent))).perform(click())
         onView(withId(R.id.edtTextNote)).perform(clearText(), typeText(noteContentUpdated))
         onView(withId(R.id.buttonAddUpdateNote)).perform(click())
 
         // verify note content is updated
-        onView(withText(noteContentUpdated)).check(matches(isDisplayed()))
+        onView(withText(getContentText(noteContentUpdated))).check(matches(isDisplayed()))
 
         // remove the note
         onView(withId(R.id.note_delete)).perform(click())
@@ -69,7 +73,18 @@ class AddNoteTest {
         onView(withId(com.google.android.material.R.id.snackbar_action)).perform(click())
 
         // verify note content is not shown (removed) over the dashboard
-        onView(withText(noteContentUpdated)).check(doesNotExist())
+        onView(withText(getHeaderText(noteContentUpdated))).check(doesNotExist())
     }
 
+    private fun getHeaderText(noteContent: String): String {
+        val defaultHeaderCharsCountLength = 35
+        return noteContent.substring(startIndex = 0,
+            endIndex = if (noteContent.indexOf("\n") == -1) if(noteContent.length < defaultHeaderCharsCountLength) noteContent.length else defaultHeaderCharsCountLength
+            else noteContent.indexOf("\n"))
+    }
+
+    private fun getContentText(noteContent: String): String {
+        return noteContent.substring(startIndex = if (noteContent.indexOf("\n") == -1) 0 else noteContent.indexOf("\n")+1,
+            endIndex = noteContent.length)
+    }
 }

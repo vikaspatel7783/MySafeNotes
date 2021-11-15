@@ -20,7 +20,7 @@ class CategoryPagerAdapter(
         return CategoryTabFragment.newInstance(allCategories[position].id)
     }
 
-    override fun getPageTitle(position: Int): CharSequence? {
+    override fun getPageTitle(position: Int): CharSequence {
         return allCategories[position].name.content.toUpperCase(Locale.ROOT)
     }
 

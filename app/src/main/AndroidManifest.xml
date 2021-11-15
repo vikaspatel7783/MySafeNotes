@@ -12,8 +12,7 @@
         android:theme="@style/Theme.MySafeNotes">
 
         <activity
-            android:name=".ui.dashboard.DashboardActivity"
-            android:theme="@style/Theme.MySafeNotes.NoActionBar">
+            android:name=".ui.dashboard.DashboardActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
                 <category android:name="android.intent.category.LAUNCHER" />

@@ -19,4 +19,10 @@ class RepositoryImpl @Inject constructor(private val mySafeNotesDatabase: MySafe
 
     override suspend fun deleteNote(note: Note) = mySafeNotesDatabase.noteDao().deleteNote(note)
 
+    override suspend fun deleteCategoryAndNotes(categoryId: Long) {
+        mySafeNotesDatabase.noteDao().deleteNotes(categoryId)
+        mySafeNotesDatabase.categoryDao().delete(categoryId)
+    }
+
+
 }

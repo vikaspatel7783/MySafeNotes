@@ -4,6 +4,8 @@ import androidx.lifecycle.*
 import com.vikas.mobile.mysafenotes.data.Repository
 import com.vikas.mobile.mysafenotes.data.entity.Category
 import dagger.hilt.android.lifecycle.HiltViewModel
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.launch
 import javax.inject.Inject
 
 @HiltViewModel
@@ -13,6 +15,12 @@ class DashboardViewModel @Inject constructor(): ViewModel() {
 
     fun getAllCategories(): LiveData<List<Category>> {
         return repository.getAllCategories()
+    }
+
+    fun deleteNotesForCategory(categoryId: Long) {
+        viewModelScope.launch(Dispatchers.IO) {
+            repository.deleteCategoryAndNotes(categoryId)
+        }
     }
 
 }

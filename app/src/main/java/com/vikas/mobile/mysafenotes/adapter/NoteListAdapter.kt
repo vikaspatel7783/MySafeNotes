@@ -53,7 +53,8 @@ class NoteListAdapter(private val dataSet: List<Note>,
     private fun getHeaderText(noteContent: String): String {
         val defaultHeaderCharsCountLength = 35
         return noteContent.substring(startIndex = 0,
-                endIndex = if (noteContent.indexOf("\n") == -1) defaultHeaderCharsCountLength else noteContent.indexOf("\n"))
+                endIndex = if (noteContent.indexOf("\n") == -1) if(noteContent.length < defaultHeaderCharsCountLength) noteContent.length
+                else defaultHeaderCharsCountLength else noteContent.indexOf("\n"))
     }
 
     private fun getContentText(noteContent: String): String {

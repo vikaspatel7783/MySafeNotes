@@ -17,4 +17,6 @@ interface Repository {
     fun getNote(noteId: Long): LiveData<Note>
 
     suspend fun deleteNote(note: Note)
+
+    suspend fun deleteCategoryAndNotes(categoryId: Long)
 }

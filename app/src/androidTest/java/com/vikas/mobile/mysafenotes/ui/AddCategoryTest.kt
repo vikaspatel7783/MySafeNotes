@@ -1,6 +1,8 @@
 package com.vikas.mobile.mysafenotes.ui
 
 import android.content.Context
+import androidx.test.core.app.ApplicationProvider
+import androidx.test.espresso.Espresso
 import androidx.test.espresso.Espresso.onView
 import androidx.test.espresso.action.ViewActions.*
 import androidx.test.espresso.assertion.ViewAssertions
@@ -34,8 +36,10 @@ class AddCategoryTest {
 
     @Test
     fun testAddCategoryScreenDisplayed() {
+        Espresso.openActionBarOverflowOrOptionsMenu(ApplicationProvider.getApplicationContext())
+
         // Given - add category button is displayed
-        onView(withId(R.id.fab_add_category)).perform(click())
+        onView(withText(context.getString(R.string.appbar_add_category))).perform(click())
 
         // When - category name is entered and add save button clicked
         onView(withId(R.id.edtTextAddCategory)).perform(typeText("PERSONAL"), closeSoftKeyboard())

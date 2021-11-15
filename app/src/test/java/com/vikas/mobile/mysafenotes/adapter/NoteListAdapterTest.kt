@@ -10,8 +10,10 @@ class NoteListAdapterTest {
     fun testNoteHeaderExtract() {
         val defaultHeaderCharsCountLength = 35
         val noteContent = "This is the content\n of my note\n, not having new line character"
+//        val noteContent = "This is the content\n"
         val headerString = noteContent.substring(startIndex = 0,
-                endIndex = if (noteContent.indexOf("\n") == -1) defaultHeaderCharsCountLength else noteContent.indexOf("\n"))
+                endIndex = if (noteContent.indexOf("\n") == -1) if(noteContent.length < defaultHeaderCharsCountLength)  noteContent.length else defaultHeaderCharsCountLength
+                    else noteContent.indexOf("\n"))
         println(headerString)
         assertNotNull(headerString)
     }

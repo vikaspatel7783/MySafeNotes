@@ -75,4 +75,19 @@ class NoteDaoTest {
         }
     }
 
+    @Test
+    fun testDeleteMultipleNotes() {
+        runBlocking {
+            val bankCategory = categoryDao.get(categoryDao.insert(createCategory("BANKING")))
+            val bankNote1 = createNote(bankCategory.id, "ICICI BANK, account number: 1234, pin: 1234")
+            val bankNote2 = createNote(bankCategory.id, "HDFC BANK, account number: 1234, pin: 1234")
+            val bankNote3 = createNote(bankCategory.id, "SBI BANK, account number: 1234, pin: 1234")
+            noteDao.insert(bankNote1)
+            noteDao.insert(bankNote2)
+            noteDao.insert(bankNote3)
+
+            Assert.assertEquals(3, noteDao.getByCategory(bankCategory.id).getOrAwaitValue().size)
+        }
+    }
+
 }
