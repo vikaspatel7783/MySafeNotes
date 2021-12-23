@@ -14,6 +14,7 @@ import com.vikas.mobile.mysafenotes.R
 import com.vikas.mobile.mysafenotes.data.entity.Category
 import com.vikas.mobile.mysafenotes.data.entity.MaskedData
 import dagger.hilt.android.AndroidEntryPoint
+import observeOnce
 import java.util.*
 
 /**
@@ -43,7 +44,7 @@ class AddCategoryDialogFragment : BottomSheetDialogFragment() {
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
-        addCategoryViewModel.fetchAllCategories().observe(this, { categoryList ->
+        addCategoryViewModel.fetchAllCategories().observeOnce(this, { categoryList ->
             categoryList.forEach { category ->
                 allCategoriesName.add(category.name.content.toLowerCase(Locale.ROOT))
             }
