@@ -22,5 +22,5 @@
     <string name="prompt_confirm_delete_category">Deleting %1$s will delete all notes, are you sure ?</string>
 
     <string name="error_no_authentication_title">No authentication</string>
-    <string name="error_no_authentication_method">Please set Biometric, PIN or Password to protect your device data for better security.</string>
+    <string name="error_no_authentication_method">Please set screen lock or fingerprint as authentication to use this app.</string>
 </resources>

@@ -40,6 +40,10 @@ class DashboardActivity : AppCompatActivity() {
                 doPostUserAuthentication()
             }
 
+            override fun onUserCancels() {
+                finish()
+            }
+
             override fun authenticationsNotPresent() {
                 AlertDialog.Builder(this@DashboardActivity)
                         .setTitle(getString(R.string.error_no_authentication_title))
