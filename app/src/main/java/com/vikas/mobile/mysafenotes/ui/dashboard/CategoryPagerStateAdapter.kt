@@ -3,6 +3,7 @@ package com.vikas.mobile.mysafenotes.ui.dashboard
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentManager
 import androidx.fragment.app.FragmentPagerAdapter
+import androidx.fragment.app.FragmentStatePagerAdapter
 import com.vikas.mobile.mysafenotes.data.entity.Category
 import java.util.*
 
@@ -10,11 +11,11 @@ import java.util.*
  * A [FragmentPagerAdapter] that returns a fragment corresponding to
  * one of the sections/tabs/pages.
  */
-class CategoryPagerAdapter(
+class CategoryPagerStateAdapter(
         manager: FragmentManager,
         private var allCategories: List<Category>
 ) :
-    FragmentPagerAdapter(manager, BEHAVIOR_RESUME_ONLY_CURRENT_FRAGMENT) {
+    FragmentStatePagerAdapter(manager, BEHAVIOR_RESUME_ONLY_CURRENT_FRAGMENT) {
 
     override fun getItem(position: Int): Fragment {
         return CategoryTabFragment.newInstance(allCategories[position].id)
@@ -30,10 +31,6 @@ class CategoryPagerAdapter(
 
     override fun getCount(): Int {
         return allCategories.size
-    }
-
-    fun setData(allCategories: List<Category>) {
-        this.allCategories = allCategories
     }
 
 }

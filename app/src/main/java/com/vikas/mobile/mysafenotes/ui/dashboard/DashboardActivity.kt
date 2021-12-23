@@ -6,9 +6,6 @@ import android.os.Bundle
 import android.view.Menu
 import android.view.MenuInflater
 import android.view.MenuItem
-import android.view.View
-import android.widget.TextView
-import android.widget.Toast
 import androidx.activity.viewModels
 import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
@@ -97,7 +94,7 @@ class DashboardActivity : AppCompatActivity() {
 
     private fun doPostUserAuthentication() {
         viewPager = findViewById(R.id.view_pager)
-        viewPager.adapter = CategoryPagerAdapter(supportFragmentManager, categoryList)
+        viewPager.adapter = CategoryPagerStateAdapter(supportFragmentManager, categoryList)
         val tabs: TabLayout = findViewById(R.id.tabs)
         tabs.setupWithViewPager(viewPager)
 
@@ -107,8 +104,10 @@ class DashboardActivity : AppCompatActivity() {
             }.toMap()
 
             categoryList = receivedCategories
-            (viewPager.adapter as CategoryPagerAdapter).setData(categoryList)
-            (viewPager.adapter as CategoryPagerAdapter).notifyDataSetChanged()
+            //FIXME: as notifyDataSet doesn't work, below is interim patch to redraw entire list
+            viewPager.adapter = CategoryPagerStateAdapter(supportFragmentManager, categoryList)
+            val tabs: TabLayout = findViewById(R.id.tabs)
+            tabs.setupWithViewPager(viewPager)
         })
     }
 
@@ -124,7 +123,7 @@ class DashboardActivity : AppCompatActivity() {
         }
     }
 
-    private fun getCurrentCategory() = ((viewPager.adapter) as CategoryPagerAdapter).getCurrentCategory(viewPager.currentItem)
+    private fun getCurrentCategory() = ((viewPager.adapter) as CategoryPagerStateAdapter).getCurrentCategory(viewPager.currentItem)
 
     private fun prepareIntentForAddUpdateNewNote(currentCategory: Category): Intent {
         return Intent(applicationContext, AddUpdateNoteActivity::class.java).apply {
