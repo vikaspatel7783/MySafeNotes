@@ -11,7 +11,8 @@ import com.vikas.mobile.mysafenotes.data.entity.Note
 
 class NoteListAdapter(private val dataSet: List<Note>,
                       private val onClick: (Note) -> Unit,
-                      private val onDelete: (Note) -> Unit) :
+                      private val onDelete: (Note) -> Unit,
+                      private val onShare: (Note) -> Unit) :
     RecyclerView.Adapter<NoteListAdapter.ViewHolder>() {
 
     /**
@@ -21,6 +22,7 @@ class NoteListAdapter(private val dataSet: List<Note>,
     class ViewHolder(view: View) : RecyclerView.ViewHolder(view) {
         val noteContainerView: ViewGroup = view.findViewById(R.id.containerNoteListItem)
         val noteDeleteView: ImageButton = view.findViewById(R.id.note_delete)
+        val noteShareView: ImageButton = view.findViewById(R.id.note_share)
         val noteHeaderView: TextView = view.findViewById(R.id.note_content_header)
         val noteContentView: TextView = view.findViewById(R.id.note_content_item)
     }
@@ -39,6 +41,9 @@ class NoteListAdapter(private val dataSet: List<Note>,
         viewHolder.noteDeleteView.setOnClickListener {
             onDelete(it.tag as Note)
         }
+        viewHolder.noteShareView.setOnClickListener {
+            onShare(it.tag as Note)
+        }
         return viewHolder
     }
 
@@ -48,6 +53,7 @@ class NoteListAdapter(private val dataSet: List<Note>,
         viewHolder.noteContentView.text = getContentText(note.noteContent.content)
         viewHolder.noteContainerView.tag = note
         viewHolder.noteDeleteView.tag = note
+        viewHolder.noteShareView.tag = note
     }
 
     private fun getHeaderText(noteContent: String): String {

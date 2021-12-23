@@ -1,5 +1,6 @@
 package com.vikas.mobile.mysafenotes.ui.dashboard
 
+import android.content.Intent
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -45,6 +46,15 @@ class CategoryTabFragment(private val categoryId: Long) : Fragment() {
                         .setAction("YES") { _ ->
                             categoryTabViewModel.deleteNote(it)
                         }.show()
+            },
+            onShare = { note ->
+                Intent().apply {
+                    action = Intent.ACTION_SEND
+                    putExtra(Intent.EXTRA_TEXT, note.noteContent.content)
+                    type = "text/plain"
+                }.let { shareIntent ->
+                    startActivity(Intent.createChooser(shareIntent, null))
+                }
             })
 
             recyclerView.layoutManager = LinearLayoutManager(context)
