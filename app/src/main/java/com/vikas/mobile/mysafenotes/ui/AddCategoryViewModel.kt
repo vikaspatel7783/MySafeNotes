@@ -13,7 +13,7 @@ class AddCategoryViewModel @Inject constructor() : ViewModel() {
 
     @Inject lateinit var repository: Repository
 
-    fun addCategory(category: Category) {
+    fun addCategory(category: String) {
         viewModelScope.launch(Dispatchers.IO) {
             repository.addCategory(category)
         }

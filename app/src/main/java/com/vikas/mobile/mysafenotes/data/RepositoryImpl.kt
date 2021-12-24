@@ -2,12 +2,15 @@ package com.vikas.mobile.mysafenotes.data
 
 import androidx.lifecycle.LiveData
 import com.vikas.mobile.mysafenotes.data.entity.Category
+import com.vikas.mobile.mysafenotes.data.entity.MaskedData
 import com.vikas.mobile.mysafenotes.data.entity.Note
+import java.util.*
 import javax.inject.Inject
 
 class RepositoryImpl @Inject constructor(private val mySafeNotesDatabase: MySafeNotesDatabase): Repository {
 
-    override suspend fun addCategory(category: Category) = mySafeNotesDatabase.categoryDao().insert(category)
+    override suspend fun addCategory(category: String) =
+            mySafeNotesDatabase.categoryDao().insert(Category(MaskedData(category)))
 
     override fun getAllCategories() = mySafeNotesDatabase.categoryDao().getAll()
 
@@ -24,5 +27,16 @@ class RepositoryImpl @Inject constructor(private val mySafeNotesDatabase: MySafe
         mySafeNotesDatabase.categoryDao().delete(categoryId)
     }
 
+    override suspend fun searchNotes(searchText: String, onResult: (List<Note>) -> Unit) {
+        val filteredNotes = mutableListOf<Note>()
+        val allNotes = mySafeNotesDatabase.noteDao().getAll()
+        val trimmedSearchText = searchText.trim().toLowerCase(Locale.ROOT)
+        for (note in allNotes) {
+            if (note.noteContent.content.toLowerCase(Locale.ROOT).contains(trimmedSearchText)) {
+                filteredNotes.add(note)
+            }
+        }
+        onResult(filteredNotes)
+    }
 
 }

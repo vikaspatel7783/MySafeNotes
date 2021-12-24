@@ -28,8 +28,8 @@
     <!--Use android:dashWidth="2dp" and android:dashGap="2dp"
     to add dashes to your stroke-->
     <stroke
-        android:width="2dp"
-        android:color="@color/note_background" />
+        android:width="1dp"
+        android:color="@color/purple_500" />
 
     <!--If you want to add padding-->
     <!-- <padding

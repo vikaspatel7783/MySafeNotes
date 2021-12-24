@@ -25,4 +25,7 @@ interface NoteDao {
     @Query("DELETE FROM note_table WHERE category_id = :categoryId")
     suspend fun deleteNotes(categoryId: Long)
 
+//    @Query("SELECT * FROM note_table WHERE content LIKE :searchText")
+//    fun searchNotes(searchText: String): LiveData<List<Note>>
+
 }

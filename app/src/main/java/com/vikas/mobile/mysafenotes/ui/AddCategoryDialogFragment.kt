@@ -55,9 +55,7 @@ class AddCategoryDialogFragment : BottomSheetDialogFragment() {
         }
 
         buttonAdd.setOnClickListener {
-            Category(MaskedData(getKeyedCategoryName())).run {
-                addCategoryViewModel.addCategory(this)
-            }
+            addCategoryViewModel.addCategory(getKeyedCategoryName())
             dismiss()
         }
 

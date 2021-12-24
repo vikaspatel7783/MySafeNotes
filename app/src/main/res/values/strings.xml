@@ -7,7 +7,7 @@
     <string name="appbar_add_note">Add new note</string>
     <string name="appbar_delete_category">Delete category</string>
 
-    <string name="label_add_category">CATEGORY NAME</string>
+    <string name="label_add_category">ADD CATEGORY NAME</string>
     <string name="button_add_category_cancel">CANCEL</string>
     <string name="button_add_category_add">ADD</string>
 
@@ -23,4 +23,6 @@
 
     <string name="error_no_authentication_title">No authentication</string>
     <string name="error_no_authentication_method">Please set screen lock or fingerprint as authentication to use this app.</string>
+
+    <string name="label_search_text">Search note here</string>
 </resources>

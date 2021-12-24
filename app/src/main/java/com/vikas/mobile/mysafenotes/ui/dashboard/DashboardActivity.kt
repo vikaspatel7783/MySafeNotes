@@ -19,6 +19,7 @@ import com.vikas.mobile.mysafenotes.data.entity.Category
 import com.vikas.mobile.mysafenotes.data.entity.Note
 import com.vikas.mobile.mysafenotes.ui.AddCategoryDialogFragment
 import com.vikas.mobile.mysafenotes.ui.AddUpdateNoteActivity
+import com.vikas.mobile.mysafenotes.ui.SearchNoteDialogFragment
 import dagger.hilt.android.AndroidEntryPoint
 import java.util.*
 
@@ -65,6 +66,10 @@ class DashboardActivity : AppCompatActivity() {
 
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
         return when (item.itemId) {
+            R.id.menu_search_note -> {
+                SearchNoteDialogFragment.newInstance().show(supportFragmentManager, "TagSearchNote")
+                true
+            }
             R.id.menu_add_category -> {
                 AddCategoryDialogFragment.newInstance().show(supportFragmentManager, "TagAddCategory")
                 true
