@@ -18,7 +18,9 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".ui.AddUpdateNoteActivity" android:label="@string/screen_title_add_note"/>
+        <activity android:name=".ui.AddUpdateNoteActivity"
+            android:parentActivityName=".ui.dashboard.DashboardActivity"
+            android:label="@string/screen_title_add_note"/>
     </application>
 
 </manifest>

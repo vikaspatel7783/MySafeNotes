@@ -1,6 +1,7 @@
 package com.vikas.mobile.mysafenotes.ui
 
 import android.os.Bundle
+import android.view.MenuItem
 import android.widget.Button
 import android.widget.EditText
 import android.widget.TextView
@@ -23,6 +24,9 @@ class AddUpdateNoteActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.add_note_layout)
+
+        actionBar?.setDisplayHomeAsUpEnabled(true)
+
         buttonAddUpdateNote = findViewById(R.id.buttonAddUpdateNote)
         editTextNoteContent = findViewById(R.id.edtTextNote)
 
@@ -53,6 +57,14 @@ class AddUpdateNoteActivity : AppCompatActivity() {
             addUpdateNoteViewModel.addUpdateNote(noteObj)
             finish()
         }
+    }
+
+    override fun onOptionsItemSelected(item: MenuItem): Boolean {
+        if (item.itemId == android.R.id.home) {
+            finish()
+            return true
+        }
+        return super.onOptionsItemSelected(item)
     }
 
     private fun isNoteExist(): Boolean {
