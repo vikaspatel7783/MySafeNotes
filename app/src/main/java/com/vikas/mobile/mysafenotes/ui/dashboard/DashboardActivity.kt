@@ -3,9 +3,7 @@ package com.vikas.mobile.mysafenotes.ui.dashboard
 import android.content.DialogInterface
 import android.content.Intent
 import android.os.Bundle
-import android.view.Menu
-import android.view.MenuInflater
-import android.view.MenuItem
+import android.view.*
 import androidx.activity.viewModels
 import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
@@ -117,6 +115,13 @@ class DashboardActivity : AppCompatActivity() {
             viewPager.adapter = CategoryPagerStateAdapter(supportFragmentManager, categoryList)
             val tabs: TabLayout = findViewById(R.id.tabs)
             tabs.setupWithViewPager(viewPager)
+
+            // show no notes layout if it is empty
+            if (categoryList.isNullOrEmpty()) {
+                findViewById<ViewGroup>(R.id.no_notes_layout).visibility = View.VISIBLE
+            } else {
+                findViewById<ViewGroup>(R.id.no_notes_layout).visibility = View.GONE
+            }
         })
     }
 

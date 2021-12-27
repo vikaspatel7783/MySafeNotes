@@ -18,6 +18,23 @@
             android:background="#D3D3D3" />
     </com.google.android.material.appbar.AppBarLayout>
 
+    <RelativeLayout
+        android:id="@+id/no_notes_layout"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <TextView
+            android:id="@+id/no_notes_text1"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerInParent="true"
+            android:textColor="@color/purple_700"
+            android:textStyle="italic"
+            android:textSize="17dp"
+            android:text="No notes found.\nPlease start adding some from menu."/>
+
+    </RelativeLayout>
+
     <androidx.viewpager.widget.ViewPager
         android:id="@+id/view_pager"
         android:layout_width="match_parent"
