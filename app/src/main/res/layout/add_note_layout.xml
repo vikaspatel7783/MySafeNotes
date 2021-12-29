@@ -5,12 +5,14 @@
     android:layout_height="match_parent"
     android:layout_margin="10dp">
 
-    <EditText
+    <com.vikas.mobile.mysafenotes.ui.LinedEditText
         android:id="@+id/edtTextNote"
-        android:background="@drawable/note_shape_default"
-        android:layout_marginTop="20dp"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:background="@drawable/note_shape_default"
+        android:imeOptions="actionNone"
+        android:gravity="top"
+        android:layout_marginTop="20dp"
         android:ems="10"
         android:padding="10dp"
         android:singleLine="false"
