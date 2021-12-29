@@ -5,11 +5,13 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Button
+import android.widget.TextView
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
-import com.google.android.material.snackbar.Snackbar
+import com.google.android.material.bottomsheet.BottomSheetDialog
 import com.vikas.mobile.mysafenotes.R
 import com.vikas.mobile.mysafenotes.adapter.NoteListAdapter
 import dagger.hilt.android.AndroidEntryPoint
@@ -38,15 +40,27 @@ class CategoryTabFragment(private val categoryId: Long) : Fragment() {
 
             val noteListAdapter = NoteListAdapter(
                     dataSet = it,
+
             onClick = {
                 (activity as DashboardActivity).onNoteClicked(it)
             },
-            onDelete = {
-                Snackbar.make(root, "Delete note ?", Snackbar.LENGTH_LONG)
-                        .setAction("YES") { _ ->
-                            categoryTabViewModel.deleteNote(it)
-                        }.show()
+
+            onDelete = { note ->
+                val dialog = BottomSheetDialog(requireContext())
+                val dialogView = layoutInflater.inflate(R.layout.confirm_note_category_deletion_layout, null)
+                dialog.setContentView(dialogView)
+
+                dialogView.findViewById<TextView>(R.id.labelConfirmDeletion).text = getString(R.string.prompt_confirm_delete_note)
+                dialogView.findViewById<Button>(R.id.buttonYes).setOnClickListener {
+                    categoryTabViewModel.deleteNote(note)
+                    dialog.dismiss()
+                }
+                dialogView.findViewById<Button>(R.id.buttonCancel).setOnClickListener {
+                    dialog.dismiss()
+                }
+                dialog.show()
             },
+
             onShare = { note ->
                 Intent().apply {
                     action = Intent.ACTION_SEND

@@ -3,43 +3,39 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:layout_margin="10dp">
+    android:padding="15dp">
 
-    <com.vikas.mobile.mysafenotes.ui.LinedEditText
-        android:id="@+id/edtTextNote"
-        android:layout_width="match_parent"
+    <TextView
+        android:id="@+id/labelConfirmDeletion"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:background="@drawable/note_shape_default"
-        android:imeOptions="actionNone"
-        android:gravity="top"
-        android:layout_marginTop="20dp"
-        android:ems="10"
-        android:padding="10dp"
-        android:singleLine="false"
-        android:inputType="textMultiLine" />
+        android:textStyle="bold"
+        android:textColor="@color/design_default_color_on_secondary"
+        android:text="@string/prompt_confirm_delete_category" />
+
 
     <RelativeLayout
-        android:id="@+id/containerAddNoteButtons"
-        android:layout_below="@+id/edtTextNote"
+        android:id="@+id/containerButtons"
+        android:layout_below="@+id/labelConfirmDeletion"
         android:layout_marginTop="30dp"
+        android:layout_marginBottom="30dp"
         android:layout_alignParentEnd="true"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content">
 
         <Button
-            android:id="@+id/buttonAddNoteCancel"
+            android:id="@+id/buttonCancel"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="@string/button_cancel" />
 
         <Button
-            android:id="@+id/buttonAddUpdateNote"
-            android:layout_toEndOf="@+id/buttonAddNoteCancel"
+            android:id="@+id/buttonYes"
+            android:layout_toEndOf="@+id/buttonCancel"
             android:layout_marginStart="15dp"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:enabled="false"
-            android:text="@string/button_save_note"
+            android:text="@string/button_ok"
             tools:ignore="RtlSymmetry" />
 
     </RelativeLayout>

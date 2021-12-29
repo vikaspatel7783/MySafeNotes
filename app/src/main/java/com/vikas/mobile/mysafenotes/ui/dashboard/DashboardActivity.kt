@@ -1,14 +1,15 @@
 package com.vikas.mobile.mysafenotes.ui.dashboard
 
 import android.content.DialogInterface
-import android.content.Intent
 import android.os.Bundle
 import android.view.*
+import android.widget.Button
+import android.widget.TextView
 import androidx.activity.viewModels
 import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
 import androidx.viewpager.widget.ViewPager
-import com.google.android.material.snackbar.Snackbar
+import com.google.android.material.bottomsheet.BottomSheetDialog
 import com.google.android.material.tabs.TabLayout
 import com.vikas.mobile.authandcrypto.AppAuthCallback
 import com.vikas.mobile.authandcrypto.BiometricPromptUtils
@@ -85,11 +86,21 @@ class DashboardActivity : AppCompatActivity() {
     }
 
     private fun deleteCategoryAndNotes() {
-        Snackbar.make(viewPager, String.format(getString(R.string.prompt_confirm_delete_category, getCurrentCategory().name.content.toUpperCase(
-            Locale.ROOT))), 4000)
-            .setAction("YES") { _ ->
-                dashboardViewModel.deleteNotesForCategory(getCurrentCategory().id)
-            }.show()
+        val dialog = BottomSheetDialog(this)
+        val dialogView = layoutInflater.inflate(R.layout.confirm_note_category_deletion_layout, null)
+        dialog.setContentView(dialogView)
+
+        dialogView.findViewById<TextView>(R.id.labelConfirmDeletion).text =
+                String.format(getString(R.string.prompt_confirm_delete_category,
+                        getCurrentCategory().name.content.toUpperCase(Locale.ROOT)))
+        dialogView.findViewById<Button>(R.id.buttonYes).setOnClickListener {
+            dashboardViewModel.deleteNotesForCategory(getCurrentCategory().id)
+            dialog.dismiss()
+        }
+        dialogView.findViewById<Button>(R.id.buttonCancel).setOnClickListener {
+            dialog.dismiss()
+        }
+        dialog.show()
     }
 
     override fun onPrepareOptionsMenu(menu: Menu?): Boolean {
