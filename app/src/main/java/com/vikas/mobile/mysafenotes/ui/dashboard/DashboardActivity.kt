@@ -101,6 +101,7 @@ class DashboardActivity : AppCompatActivity() {
 
     private fun doPostUserAuthentication() {
         viewPager = findViewById(R.id.view_pager)
+        viewPager.offscreenPageLimit = 3
         viewPager.adapter = CategoryPagerStateAdapter(supportFragmentManager, categoryList)
         val tabs: TabLayout = findViewById(R.id.tabs)
         tabs.setupWithViewPager(viewPager)
@@ -126,24 +127,28 @@ class DashboardActivity : AppCompatActivity() {
     }
 
     private fun showAddUpdateNoteActivity() {
-        startActivity(prepareIntentForAddUpdateNewNote(getCurrentCategory()))
+        getCurrentCategory().let { category ->
+            AddUpdateNoteActivity.createIntent(
+                    applicationContext,
+                    categoryId = category.id,
+                    categoryName = category.name.content
+            ).let {
+                startActivity(it)
+            }
+        }
     }
 
     fun onNoteClicked(note: Note) {
-        prepareIntentForAddUpdateNewNote(getCurrentCategory()).apply {
-            putExtra(AddUpdateNoteActivity.KEY_NOTE_ID, note.id)
-        }.run {
-            startActivity(this)
+        AddUpdateNoteActivity.createIntent(
+                applicationContext,
+                categoryId = note.categoryId,
+                categoryName = getCurrentCategory().name.content,
+                noteId = note.id)
+        .let {
+            startActivity(it)
         }
     }
 
     private fun getCurrentCategory() = ((viewPager.adapter) as CategoryPagerStateAdapter).getCurrentCategory(viewPager.currentItem)
-
-    private fun prepareIntentForAddUpdateNewNote(currentCategory: Category): Intent {
-        return Intent(applicationContext, AddUpdateNoteActivity::class.java).apply {
-            putExtra(AddUpdateNoteActivity.KEY_CATEGORY_ID, currentCategory.id)
-            putExtra(AddUpdateNoteActivity.KEY_CATEGORY_NAME, currentCategory.name.content)
-        }
-    }
 
 }

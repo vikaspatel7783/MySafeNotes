@@ -62,8 +62,17 @@ class SearchNoteDialogFragment : BottomSheetDialogFragment() {
                 val noteListAdapter = NoteListAdapter(
                         dataSet = notes,
                         onClick = { note ->
-                            (activity as DashboardActivity).onNoteClicked(note)
-                            dismiss()
+                            searchViewModel.getCategory(note.categoryId).observe(this, { category ->
+                                AddUpdateNoteActivity.createIntent(
+                                        view.context,
+                                        categoryId = note.categoryId,
+                                        categoryName = category.name.content,
+                                        noteId = note.id)
+                                        .let {
+                                            startActivity(it)
+                                        }
+                                dismiss()
+                            })
                         },
                         onDelete = { note ->
                             Snackbar.make(view.rootView, "Delete note ?", Snackbar.LENGTH_LONG)

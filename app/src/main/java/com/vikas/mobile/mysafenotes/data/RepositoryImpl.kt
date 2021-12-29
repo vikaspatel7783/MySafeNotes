@@ -12,6 +12,8 @@ class RepositoryImpl @Inject constructor(private val mySafeNotesDatabase: MySafe
     override suspend fun addCategory(category: String) =
             mySafeNotesDatabase.categoryDao().insert(Category(MaskedData(category)))
 
+    override suspend fun getCategory(categoryId: Long): Category = mySafeNotesDatabase.categoryDao().get(categoryId)
+
     override fun getAllCategories() = mySafeNotesDatabase.categoryDao().getAll()
 
     override suspend fun addUpdateNote(note: Note): Long = mySafeNotesDatabase.noteDao().insert(note)

@@ -8,6 +8,8 @@ interface Repository {
 
     suspend fun addCategory(category: String): Long
 
+    suspend fun getCategory(categoryId: Long): Category
+
     fun getAllCategories(): LiveData<List<Category>>
 
     suspend fun addUpdateNote(note: Note): Long

@@ -21,7 +21,9 @@
     <RelativeLayout
         android:id="@+id/no_notes_layout"
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="match_parent"
+        android:padding="20dp"
+        android:visibility="gone">
 
         <TextView
             android:id="@+id/no_notes_text1"
@@ -31,7 +33,7 @@
             android:textColor="@color/purple_700"
             android:textStyle="italic"
             android:textSize="17dp"
-            android:text="No notes found.\nPlease start adding some from menu."/>
+            android:text="@string/label_no_notes"/>
 
     </RelativeLayout>
 

@@ -5,18 +5,8 @@
     android:layout_height="match_parent"
     android:layout_margin="10dp">
 
-    <TextView
-        android:id="@+id/labelCategory"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:textStyle="bold"
-        android:layout_centerHorizontal="true"
-        android:textColor="@color/design_default_color_on_secondary"
-        android:text="@string/label_add_category" />
-
     <EditText
         android:id="@+id/edtTextNote"
-        android:layout_below="@+id/labelCategory"
         android:background="@drawable/note_shape_default"
         android:layout_marginTop="20dp"
         android:layout_width="match_parent"

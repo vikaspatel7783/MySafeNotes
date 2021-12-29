@@ -2,6 +2,7 @@ package com.vikas.mobile.mysafenotes.ui.dashboard
 
 import androidx.lifecycle.*
 import com.vikas.mobile.mysafenotes.data.Repository
+import com.vikas.mobile.mysafenotes.data.entity.Category
 import com.vikas.mobile.mysafenotes.data.entity.Note
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.Dispatchers
@@ -14,6 +15,19 @@ class SearchNotesViewModel @Inject constructor() : ViewModel() {
     @Inject lateinit var repository: Repository
 
     private var _filteredNotes = MutableLiveData<List<Note>>()
+
+    private val _category = MutableLiveData<Category>()
+    val category: LiveData<Category> = _category
+
+
+    fun getCategory(categoryId: Long): LiveData<Category> {
+        viewModelScope.launch(Dispatchers.IO) {
+            repository.getCategory(categoryId).let {
+                _category.postValue(it)
+            }
+        }
+        return category
+    }
 
     fun searchNotes(searchText: String): LiveData<List<Note>> {
         viewModelScope.launch(Dispatchers.IO) {

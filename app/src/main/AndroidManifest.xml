@@ -19,8 +19,7 @@
             </intent-filter>
         </activity>
         <activity android:name=".ui.AddUpdateNoteActivity"
-            android:parentActivityName=".ui.dashboard.DashboardActivity"
-            android:label="@string/screen_title_add_note"/>
+            android:parentActivityName=".ui.dashboard.DashboardActivity"/>
     </application>
 
 </manifest>

@@ -1,5 +1,7 @@
 package com.vikas.mobile.mysafenotes.ui
 
+import android.content.Context
+import android.content.Intent
 import android.os.Bundle
 import android.view.MenuItem
 import android.widget.Button
@@ -26,11 +28,10 @@ class AddUpdateNoteActivity : AppCompatActivity() {
         setContentView(R.layout.add_note_layout)
 
         actionBar?.setDisplayHomeAsUpEnabled(true)
+        title = getCategoryName().toUpperCase(Locale.ROOT)
 
         buttonAddUpdateNote = findViewById(R.id.buttonAddUpdateNote)
         editTextNoteContent = findViewById(R.id.edtTextNote)
-
-        findViewById<TextView>(R.id.labelCategory).text = getCategoryName()!!.toUpperCase(Locale.ROOT)
 
         if (this.getNoteId() != -1L) {
             addUpdateNoteViewModel.getNote(getNoteId()).observe(this, {
@@ -73,13 +74,21 @@ class AddUpdateNoteActivity : AppCompatActivity() {
 
     private fun getCategoryId() = intent.getLongExtra(KEY_CATEGORY_ID, -1)
 
-    private fun getCategoryName() = intent.getStringExtra(KEY_CATEGORY_NAME)
+    private fun getCategoryName() = intent.getStringExtra(KEY_CATEGORY_NAME)!!
 
     private fun getNoteId() = intent.getLongExtra(KEY_NOTE_ID, -1)
 
     companion object {
-        const val KEY_CATEGORY_ID: String = "KEY_CATEGORY_ID"
-        const val KEY_CATEGORY_NAME: String = "KEY_CATEGORY_NAME"
-        const val KEY_NOTE_ID: String = "KEY_NOTE_ID"
+        private const val KEY_CATEGORY_ID: String = "KEY_CATEGORY_ID"
+        private const val KEY_CATEGORY_NAME: String = "KEY_CATEGORY_NAME"
+        private const val KEY_NOTE_ID: String = "KEY_NOTE_ID"
+
+        fun createIntent(context: Context, categoryId: Long, categoryName: String, noteId: Long? = -1): Intent {
+            return Intent(context.applicationContext, AddUpdateNoteActivity::class.java).apply {
+                this.putExtra(KEY_CATEGORY_ID, categoryId)
+                this.putExtra(KEY_CATEGORY_NAME, categoryName)
+                this.putExtra(KEY_NOTE_ID, noteId)
+            }
+        }
     }
 }
