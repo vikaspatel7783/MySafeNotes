@@ -23,7 +23,7 @@
     <string name="prompt_info_subtitle">Please login to get access</string>
     <string name="prompt_info_description">SafeNotes is using Android biometric authentication</string>
     <string name="prompt_confirm_delete_note">Sure to delete note ?</string>
-    <string name="prompt_confirm_delete_category">Deleting %1$s will delete all notes, are you sure ?</string>
+    <string name="prompt_confirm_delete_category">Deleting %1$s will delete all its notes, are you sure ?</string>
 
     <string name="error_no_authentication_title">No authentication</string>
     <string name="error_no_authentication_method">Please set screen lock or fingerprint as authentication to use this app.</string>
