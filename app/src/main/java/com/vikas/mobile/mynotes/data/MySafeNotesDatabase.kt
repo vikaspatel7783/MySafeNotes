@@ -41,8 +41,8 @@ abstract class MySafeNotesDatabase: RoomDatabase() {
                         override fun onCreate(db: SupportSQLiteDatabase) {
                             super.onCreate(db)
 //                            CoroutineScope(Dispatchers.IO).launch {}
-                            //val request = OneTimeWorkRequestBuilder<DefaultNotesSeedWorker>().build()
-                            //WorkManager.getInstance(context).enqueue(request)
+                            val request = OneTimeWorkRequestBuilder<DefaultNotesSeedWorker>().build()
+                            WorkManager.getInstance(context).enqueue(request)
                         }
                     }
                 )
