@@ -10,16 +10,18 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:textStyle="bold"
-        android:textColor="@color/design_default_color_on_secondary"
+        android:textSize="15dp"
+        android:layout_centerHorizontal="true"
+        android:textColor="@color/note_header_bkg"
         android:text="@string/prompt_confirm_delete_category" />
 
 
     <RelativeLayout
         android:id="@+id/containerButtons"
         android:layout_below="@+id/labelConfirmDeletion"
-        android:layout_marginTop="30dp"
-        android:layout_marginBottom="30dp"
-        android:layout_alignParentEnd="true"
+        android:layout_marginTop="20dp"
+        android:layout_marginBottom="20dp"
+        android:layout_centerHorizontal="true"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content">
 
@@ -35,7 +37,7 @@
             android:layout_marginStart="15dp"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="@string/button_ok"
+            android:text="@string/button_yes"
             tools:ignore="RtlSymmetry" />
 
     </RelativeLayout>

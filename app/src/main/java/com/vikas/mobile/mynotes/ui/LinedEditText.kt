@@ -34,7 +34,7 @@ class LinedEditText(context: Context, attrs: AttributeSet?) : androidx.appcompat
     // we need this constructor for LayoutInflater
     init {
         mPaint.style = Paint.Style.FILL_AND_STROKE
-        mPaint.color = context.getColor(R.color.note_content)
+        mPaint.color = context.getColor(R.color.note_header_bkg)
 //        mPaint.color = Color.parseColor("#C0C0C0") //SET YOUR OWN COLOR HERE
     }
 }

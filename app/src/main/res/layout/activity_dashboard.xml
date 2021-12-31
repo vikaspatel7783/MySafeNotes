@@ -9,6 +9,7 @@
     <com.google.android.material.appbar.AppBarLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+
         android:theme="@style/Theme.MySafeNotes.AppBarOverlay">
 
         <com.google.android.material.tabs.TabLayout
@@ -16,7 +17,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             app:tabMode="auto"
-            android:background="#D3D3D3" />
+            android:background="@color/tab_bar_background" />
     </com.google.android.material.appbar.AppBarLayout>
 
     <RelativeLayout
@@ -31,7 +32,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_centerInParent="true"
-            android:textColor="@color/purple_700"
+            android:textColor="@color/note_header_bkg"
             android:textStyle="italic"
             android:textSize="17dp"
             android:text="@string/label_no_notes"/>

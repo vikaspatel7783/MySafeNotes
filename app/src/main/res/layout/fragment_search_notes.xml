@@ -5,7 +5,7 @@
 
     <EditText
         android:id="@+id/edtTextSearchNote"
-        android:background="@drawable/note_shape_default"
+        android:background="@drawable/edittext_style"
         android:layout_marginTop="15dp"
         android:layout_marginLeft="10dp"
         android:layout_marginRight="10dp"
@@ -35,7 +35,7 @@
         android:paddingTop="8dp"
         android:paddingBottom="8dp"
         android:layout_alignParentEnd="true"
-        android:textColor="@color/purple_700"
+        android:textColor="@color/note_content"
         android:text="0" />
 
     <androidx.recyclerview.widget.RecyclerView

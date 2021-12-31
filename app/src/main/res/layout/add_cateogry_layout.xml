@@ -6,16 +6,7 @@
     android:padding="15dp">
 
     <TextView
-        android:id="@+id/labelAddCategory"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:textStyle="bold"
-        android:textColor="@color/design_default_color_on_secondary"
-        android:text="@string/label_add_category" />
-
-    <TextView
         android:id="@+id/textAddCategoryError"
-        android:layout_below="@+id/labelAddCategory"
         android:gravity="right"
         android:textColor="@android:color/holo_red_dark"
         android:visibility="gone"
@@ -27,7 +18,9 @@
     <EditText
         android:id="@+id/edtTextAddCategory"
         android:layout_below="@+id/textAddCategoryError"
-        android:background="@drawable/note_shape_default"
+        android:background="@drawable/edittext_style"
+        android:textColor="@color/note_header_bkg"
+        android:hint="@string/hint_add_category"
         android:padding="8dp"
         android:layout_marginTop="8dp"
         android:layout_width="match_parent"

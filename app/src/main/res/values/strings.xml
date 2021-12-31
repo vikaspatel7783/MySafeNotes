@@ -8,11 +8,10 @@
     <string name="appbar_delete_category">Delete category</string>
     <string name="appbar_search_note">Search note</string>
 
-    <string name="label_add_category">ADD CATEGORY NAME</string>
     <string name="button_add_category_add">ADD</string>
 
     <string name="button_cancel">CANCEL</string>
-    <string name="button_ok">OKAY</string>
+    <string name="button_yes">YES</string>
 
     <string name="error_category_already_exist">This category already exist</string>
 
@@ -24,6 +23,7 @@
     <string name="prompt_info_description">SafeNotes is using Android biometric authentication</string>
     <string name="prompt_confirm_delete_note">Sure to delete note ?</string>
     <string name="prompt_confirm_delete_category">Deleting %1$s will delete all its notes, are you sure ?</string>
+    <string name="hint_add_category">Type new category name</string>
 
     <string name="error_no_authentication_title">No authentication</string>
     <string name="error_no_authentication_method">Please set screen lock or fingerprint as authentication to use this app.</string>
