@@ -27,14 +27,7 @@
         android:layout_height="wrap_content">
 
         <Button
-            android:id="@+id/buttonAddNoteCancel"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="@string/button_cancel" />
-
-        <Button
             android:id="@+id/buttonAddUpdateNote"
-            android:layout_toEndOf="@+id/buttonAddNoteCancel"
             android:layout_marginStart="15dp"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"

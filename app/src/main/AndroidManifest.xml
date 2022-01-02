@@ -19,7 +19,10 @@
             </intent-filter>
         </activity>
         <activity android:name="com.vikas.mobile.mynotes.ui.AddUpdateNoteActivity"
-            android:parentActivityName="com.vikas.mobile.mynotes.ui.dashboard.DashboardActivity"/>
+            android:parentActivityName=".ui.dashboard.DashboardActivity"/>
+        <activity android:name=".ui.SettingsActivity"
+            android:parentActivityName=".ui.dashboard.DashboardActivity"
+            android:label="@string/appbar_settings"/>
     </application>
 
 </manifest>

@@ -1,4 +1,4 @@
-package com.vikas.mobile.mynotes.ui.dashboard
+package com.vikas.mobile.mynotes.ui
 
 import androidx.lifecycle.*
 import com.vikas.mobile.mynotes.data.Repository

@@ -40,10 +40,6 @@ class AddUpdateNoteActivity : AppCompatActivity() {
             })
         }
 
-        findViewById<Button>(R.id.buttonAddNoteCancel).setOnClickListener {
-            finish()
-        }
-
         editTextNoteContent.addTextChangedListener {
             buttonAddUpdateNote.isEnabled = it.toString().isNotEmpty()
         }

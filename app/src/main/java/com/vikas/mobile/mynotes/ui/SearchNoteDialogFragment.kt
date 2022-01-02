@@ -15,7 +15,6 @@ import com.google.android.material.bottomsheet.BottomSheetDialogFragment
 import com.google.android.material.snackbar.Snackbar
 import com.vikas.mobile.mynotes.R
 import com.vikas.mobile.mynotes.adapter.NoteListAdapter
-import com.vikas.mobile.mynotes.ui.dashboard.SearchNotesViewModel
 import dagger.hilt.android.AndroidEntryPoint
 
 

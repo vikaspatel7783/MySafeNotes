@@ -1,0 +1,106 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:padding="15dp">
+
+    <RelativeLayout
+        android:id="@+id/settings_container_auth"
+        android:layout_alignParentStart="true"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <TextView
+            android:id="@+id/label_settings_auth1"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textColor="@color/note_header_bkg"
+            android:textStyle="bold"
+            android:text="@string/settings_auth_text1"/>
+
+        <TextView
+            android:id="@+id/label_settings_auth2"
+            android:layout_below="@+id/label_settings_auth1"
+            android:layout_toStartOf="@id/settings_auth_switch"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textColor="@color/settings_subtext_gray"
+            android:text="@string/settings_auth_text2"/>
+
+        <ToggleButton
+            android:id="@+id/settings_auth_switch"
+            android:layout_alignParentEnd="true"
+            android:backgroundTint="@color/note_header_bkg"
+            android:textColor="@color/white"
+            android:textStyle="bold"
+            android:background="@drawable/round_corner"
+            android:layout_marginStart="15dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true" />
+
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:id="@+id/settings_container_version"
+        android:layout_below="@+id/settings_container_auth"
+        android:layout_marginTop="25dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <TextView
+            android:id="@+id/label_settings_version"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textColor="@color/note_header_bkg"
+            android:textStyle="bold"
+            android:text="@string/settings_version_text1"/>
+
+        <TextView
+            android:id="@+id/value_settings_version"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/label_settings_version"
+            android:textColor="@color/settings_subtext_gray"
+            android:text="0.0.0"/>
+
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:id="@+id/settings_container_developer"
+        android:layout_below="@+id/settings_container_version"
+        android:layout_marginTop="25dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <TextView
+            android:id="@+id/label_developer"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textColor="@color/note_header_bkg"
+            android:textStyle="bold"
+            android:text="@string/settings_developer_text1"/>
+
+        <TextView
+            android:id="@+id/value_developer"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/label_developer"
+            android:textColor="@color/settings_subtext_gray"
+            android:text="@string/settings_developer_email"/>
+
+        <ImageButton
+            android:id="@+id/ic_developer_email"
+            android:layout_alignParentEnd="true"
+            android:src="@android:drawable/ic_dialog_email"
+            android:background="@drawable/round_corner"
+            android:padding="4dp"
+            android:layout_marginStart="15dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true" />
+
+    </RelativeLayout>
+
+</RelativeLayout>

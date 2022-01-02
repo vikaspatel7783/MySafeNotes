@@ -10,16 +10,20 @@ import androidx.work.OneTimeWorkRequestBuilder
 import androidx.work.WorkManager
 import com.vikas.mobile.mynotes.data.dao.CategoryDao
 import com.vikas.mobile.mynotes.data.dao.NoteDao
+import com.vikas.mobile.mynotes.data.dao.SettingsDao
 import com.vikas.mobile.mynotes.data.entity.Category
 import com.vikas.mobile.mynotes.data.entity.Note
+import com.vikas.mobile.mynotes.data.entity.Setting
 import com.vikas.mobile.mynotes.worker.DefaultNotesSeedWorker
+import com.vikas.mobile.mynotes.worker.DefaultSettingsWorker
 
-@Database(entities = [Category::class, Note::class], version = 1, exportSchema = false)
+@Database(entities = [Category::class, Note::class, Setting::class], version = 1, exportSchema = false)
 @TypeConverters(Converters::class)
 abstract class MySafeNotesDatabase: RoomDatabase() {
 
     abstract fun categoryDao(): CategoryDao
     abstract fun noteDao(): NoteDao
+    abstract fun settingsDao(): SettingsDao
 
     companion object {
 
@@ -43,6 +47,8 @@ abstract class MySafeNotesDatabase: RoomDatabase() {
 //                            CoroutineScope(Dispatchers.IO).launch {}
 //                            val request = OneTimeWorkRequestBuilder<DefaultNotesSeedWorker>().build()
 //                            WorkManager.getInstance(context).enqueue(request)
+                            val request = OneTimeWorkRequestBuilder<DefaultSettingsWorker>().build()
+                            WorkManager.getInstance(context).enqueue(request)
                         }
                     }
                 )

@@ -1,6 +1,7 @@
 package com.vikas.mobile.mynotes.ui.dashboard
 
 import android.content.DialogInterface
+import android.content.Intent
 import android.os.Bundle
 import android.view.*
 import android.widget.Button
@@ -16,10 +17,13 @@ import com.vikas.mobile.authandcrypto.BiometricPromptUtils
 import com.vikas.mobile.mynotes.R
 import com.vikas.mobile.mynotes.data.entity.Category
 import com.vikas.mobile.mynotes.data.entity.Note
+import com.vikas.mobile.mynotes.data.entity.Setting
 import com.vikas.mobile.mynotes.ui.AddCategoryDialogFragment
 import com.vikas.mobile.mynotes.ui.AddUpdateNoteActivity
 import com.vikas.mobile.mynotes.ui.SearchNoteDialogFragment
+import com.vikas.mobile.mynotes.ui.SettingsActivity
 import dagger.hilt.android.AndroidEntryPoint
+import observeOnce
 import java.util.*
 
 @AndroidEntryPoint
@@ -35,27 +39,35 @@ class DashboardActivity : AppCompatActivity() {
         window.setFlags(WindowManager.LayoutParams.FLAG_SECURE, WindowManager.LayoutParams.FLAG_SECURE)
         setContentView(R.layout.activity_dashboard)
 
-        BiometricPromptUtils.showUserAuthentication(this,
-        object : AppAuthCallback {
-            override fun onAuthenticationSucceeded() {
-                doPostUserAuthentication()
-            }
-
-            override fun onUserCancels() {
-                finish()
-            }
-
-            override fun authenticationsNotPresent() {
-                AlertDialog.Builder(this@DashboardActivity)
-                        .setTitle(getString(R.string.error_no_authentication_title))
-                        .setMessage(getString(R.string.error_no_authentication_method))
-                        .setCancelable(false)
-                        .setPositiveButton(android.R.string.ok) { _: DialogInterface, _: Int ->
-                            finish()
-                        }
-                        .show()
+        dashboardViewModel.getAuthSetting().observeOnce(this, { authSetting ->
+            Setting.interpretAuthSettingValue(authSetting.value).let { authEnabled ->
+                if (authEnabled) showAuthentication() else doPostUserAuthentication()
             }
         })
+    }
+
+    private fun showAuthentication() {
+        BiometricPromptUtils.showUserAuthentication(this,
+                object : AppAuthCallback {
+                    override fun onAuthenticationSucceeded() {
+                        doPostUserAuthentication()
+                    }
+
+                    override fun onUserCancels() {
+                        finish()
+                    }
+
+                    override fun authenticationsNotPresent() {
+                        AlertDialog.Builder(this@DashboardActivity)
+                                .setTitle(getString(R.string.error_no_authentication_title))
+                                .setMessage(getString(R.string.error_no_authentication_method))
+                                .setCancelable(false)
+                                .setPositiveButton(android.R.string.ok) { _: DialogInterface, _: Int ->
+                                    finish()
+                                }
+                                .show()
+                    }
+                })
     }
 
     override fun onCreateOptionsMenu(menu: Menu): Boolean {
@@ -66,6 +78,10 @@ class DashboardActivity : AppCompatActivity() {
 
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
         return when (item.itemId) {
+            R.id.menu_settings -> {
+                startActivity(Intent(this, SettingsActivity::class.java))
+                true
+            }
             R.id.menu_search_note -> {
                 SearchNoteDialogFragment.newInstance().show(supportFragmentManager, "TagSearchNote")
                 true

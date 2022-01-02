@@ -4,6 +4,7 @@ import androidx.lifecycle.LiveData
 import com.vikas.mobile.mynotes.data.entity.Category
 import com.vikas.mobile.mynotes.data.entity.MaskedData
 import com.vikas.mobile.mynotes.data.entity.Note
+import com.vikas.mobile.mynotes.data.entity.Setting
 import java.util.*
 import javax.inject.Inject
 
@@ -39,6 +40,14 @@ class RepositoryImpl @Inject constructor(private val mySafeNotesDatabase: MySafe
             }
         }
         onResult(filteredNotes)
+    }
+
+    override suspend fun getSetting(name: String): Setting {
+        return mySafeNotesDatabase.settingsDao().get(name)
+    }
+
+    override suspend fun updateSettings(setting: Setting) {
+        mySafeNotesDatabase.settingsDao().insert(setting)
     }
 
 }

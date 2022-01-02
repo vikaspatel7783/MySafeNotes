@@ -3,8 +3,9 @@ package com.vikas.mobile.mynotes.data
 import androidx.lifecycle.LiveData
 import com.vikas.mobile.mynotes.data.entity.Category
 import com.vikas.mobile.mynotes.data.entity.Note
+import com.vikas.mobile.mynotes.data.entity.Setting
 
-interface Repository {
+interface Repository: SettingsRepository {
 
     suspend fun addCategory(category: String): Long
 
@@ -23,4 +24,5 @@ interface Repository {
     suspend fun deleteCategoryAndNotes(categoryId: Long)
 
     suspend fun searchNotes(searchText: String, onResult: (List<Note>) -> Unit)
+
 }
