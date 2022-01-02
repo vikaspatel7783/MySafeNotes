@@ -3,6 +3,7 @@ package com.vikas.mobile.mynotes.ui
 import android.content.Intent
 import android.os.Bundle
 import android.widget.ImageButton
+import android.widget.ImageView
 import android.widget.TextView
 import android.widget.ToggleButton
 import androidx.activity.viewModels
@@ -30,7 +31,7 @@ class SettingsActivity : AppCompatActivity() {
 
         findViewById<TextView>(R.id.value_settings_version).text = BuildConfig.VERSION_NAME
 
-        findViewById<ImageButton>(R.id.ic_developer_email).setOnClickListener {
+        findViewById<ImageView>(R.id.ic_developer_email).setOnClickListener {
             val email = Intent(Intent.ACTION_SEND)
             email.putExtra(Intent.EXTRA_EMAIL, arrayOf(getString(R.string.settings_developer_email)))
             email.putExtra(Intent.EXTRA_SUBJECT, "MyNotes")
