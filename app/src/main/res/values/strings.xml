@@ -26,14 +26,14 @@
     <string name="prompt_confirm_delete_category">Deleting %1$s will delete all its notes, are you sure ?</string>
     <string name="hint_add_category">Type new category name</string>
 
-    <string name="error_no_authentication_title">No authentication</string>
-    <string name="error_no_authentication_method">Please set screen lock or fingerprint as authentication to use this app.</string>
+    <string name="error_no_authentication_title">No authentication set</string>
+    <string name="error_no_authentication_method">Please set Pin, Password, Pattern or Biometric authentication in device first.</string>
 
     <string name="label_no_notes">No notes found.\nPlease start adding some from menu.</string>
     <string name="label_search_text">Type to search</string>
 
     <string name="settings_auth_text1">Authentication on app launch</string>
-    <string name="settings_auth_text2">Prompt user for authentication (based on biometric, password, pattern you have set in phone)</string>
+    <string name="settings_auth_text2">Prompt for authentication (Password, Pattern, Pin or Biometric based on your setting) upon app launch</string>
     <string name="settings_version_text1">Application version</string>
     <string name="settings_developer_text1">Developer</string>
     <string name="settings_developer_email">vikaspatel7783@gmail.com</string>

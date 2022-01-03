@@ -12,13 +12,13 @@
         android:theme="@style/Theme.MySafeNotes">
 
         <activity
-            android:name="com.vikas.mobile.mynotes.ui.dashboard.DashboardActivity">
+            android:name=".ui.dashboard.DashboardActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name="com.vikas.mobile.mynotes.ui.AddUpdateNoteActivity"
+        <activity android:name=".ui.AddUpdateNoteActivity"
             android:parentActivityName=".ui.dashboard.DashboardActivity"/>
         <activity android:name=".ui.SettingsActivity"
             android:parentActivityName=".ui.dashboard.DashboardActivity"
