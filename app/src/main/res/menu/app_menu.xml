@@ -13,15 +13,18 @@
             android:title="@string/appbar_search_note"/>
 
         <item android:id="@+id/menu_add_note"
-            android:icon="@android:drawable/ic_input_add"
+            android:icon="@drawable/icon_add_note"
+            app:showAsAction="ifRoom"
             android:title="@string/appbar_add_note"/>
 
         <item android:id="@+id/menu_add_category"
-            android:icon="@android:drawable/ic_menu_add"
+            android:icon="@drawable/icon_add_category"
+            app:showAsAction="ifRoom"
             android:title="@string/appbar_add_category"/>
 
         <item android:id="@+id/menu_delete_category"
-            android:icon="@android:drawable/ic_menu_delete"
+            android:icon="@drawable/icon_remove_category"
+            app:showAsAction="ifRoom"
             android:title="@string/appbar_delete_category"/>
 
 </menu>

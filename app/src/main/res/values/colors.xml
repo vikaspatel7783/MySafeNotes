@@ -5,7 +5,7 @@
     <color name="white">#FFFFFFFF</color>
     <color name="settings_subtext_gray">#808080</color>
 
-    <color name="tab_bar_background">#ffbf00</color>
+    <color name="tab_bar_background">@color/white</color>
     <color name="note_background">#fffb96</color>
     <color name="note_content">#343d46</color>
     <color name="note_background_select">#eeba30</color>
