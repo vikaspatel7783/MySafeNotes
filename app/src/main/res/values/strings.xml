@@ -3,7 +3,7 @@
     <string name="screen_title_dashboard">My notes</string>
     <string name="title_activity_dashboard">DashboardActivity</string>
 
-    <string name="appbar_add_category">Add new note category</string>
+    <string name="appbar_add_category">Add new category</string>
     <string name="appbar_add_note">Add new note</string>
     <string name="appbar_delete_category">Delete category</string>
     <string name="appbar_search_note">Search note</string>
@@ -29,7 +29,7 @@
     <string name="error_no_authentication_title">No authentication set</string>
     <string name="error_no_authentication_method">Please set Pin, Password, Pattern or Biometric authentication in device first.</string>
 
-    <string name="label_no_notes">No notes found.\nPlease start adding some from menu.</string>
+    <string name="label_no_notes">No notes found</string>
     <string name="label_search_text">Type to search</string>
 
     <string name="settings_auth_text1">Authentication on app launch</string>
@@ -37,4 +37,10 @@
     <string name="settings_version_text1">Application version</string>
     <string name="settings_developer_text1">Developer</string>
     <string name="settings_developer_email">vikaspatel7783@gmail.com</string>
+
+    <string name="user_guide_text1">Select icon to add note category (e.g. Finance, Work, Personal etc)</string>
+    <string name="user_guide_text2">Select icon to add your notes for created category</string>
+    <string name="user_guide_text3">Select icon to find note(s) across category</string>
+    <string name="user_guide_text4">Select icon to delete category</string>
+    <string name="user_guide_text5">Select icon to customize your settings</string>
 </resources>

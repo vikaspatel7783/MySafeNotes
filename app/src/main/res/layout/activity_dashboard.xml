@@ -28,18 +28,11 @@
         android:id="@+id/no_notes_layout"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
+        android:gravity="center_vertical"
         android:padding="20dp"
-        android:visibility="gone">
+        android:visibility="visible">
 
-        <TextView
-            android:id="@+id/no_notes_text1"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_centerInParent="true"
-            android:textColor="@color/note_header_bkg"
-            android:textStyle="italic"
-            android:textSize="17dp"
-            android:text="@string/label_no_notes"/>
+        <include layout="@layout/user_guide_layout"/>
 
     </RelativeLayout>
 
