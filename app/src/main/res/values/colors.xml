@@ -10,6 +10,6 @@
     <color name="note_content">#343d46</color>
     <color name="note_background_select">#eeba30</color>
     <color name="note_header_bkg">#a67c00</color>
-    <color name="statusbar_color">#ffbf00</color>
+    <color name="statusbar_color">@color/white</color>
 
 </resources>
