@@ -14,7 +14,6 @@ import com.vikas.mobile.mynotes.data.dao.SettingsDao
 import com.vikas.mobile.mynotes.data.entity.Category
 import com.vikas.mobile.mynotes.data.entity.Note
 import com.vikas.mobile.mynotes.data.entity.Setting
-import com.vikas.mobile.mynotes.worker.DefaultNotesSeedWorker
 import com.vikas.mobile.mynotes.worker.DefaultSettingsWorker
 
 @Database(entities = [Category::class, Note::class, Setting::class], version = 1, exportSchema = false)
