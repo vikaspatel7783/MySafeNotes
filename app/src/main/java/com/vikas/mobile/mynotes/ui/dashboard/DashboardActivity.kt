@@ -123,8 +123,9 @@ class DashboardActivity : AppCompatActivity() {
 
     override fun onPrepareOptionsMenu(menu: Menu?): Boolean {
         super.onPrepareOptionsMenu(menu)
-        menu?.findItem(R.id.menu_add_note)?.isEnabled = categoryList.isNotEmpty()
-        menu?.findItem(R.id.menu_delete_category)?.isEnabled = categoryList.isNotEmpty()
+        menu?.findItem(R.id.menu_add_note)?.isVisible = categoryList.isNotEmpty()
+        menu?.findItem(R.id.menu_search_note)?.isVisible = categoryList.isNotEmpty()
+        menu?.findItem(R.id.menu_delete_category)?.isVisible = categoryList.isNotEmpty()
         return true
     }
 
@@ -149,9 +150,12 @@ class DashboardActivity : AppCompatActivity() {
             // show no notes layout if it is empty
             if (categoryList.isNullOrEmpty()) {
                 findViewById<ViewGroup>(R.id.no_notes_layout).visibility = View.VISIBLE
+                tabs.visibility = View.GONE
             } else {
                 findViewById<ViewGroup>(R.id.no_notes_layout).visibility = View.GONE
+                tabs.visibility = View.VISIBLE
             }
+            invalidateOptionsMenu()
         })
     }
 

@@ -40,7 +40,7 @@
 
     <string name="user_guide_text1">Select icon to add note category (e.g. Finance, Work, Personal etc)</string>
     <string name="user_guide_text2">Select icon to add your notes for created category</string>
-    <string name="user_guide_text3">Select icon to find note(s) across category</string>
+    <string name="user_guide_text3">Select icon to find note(s) across categories</string>
     <string name="user_guide_text4">Select icon to delete category</string>
     <string name="user_guide_text5">Select icon to customize your settings</string>
 </resources>

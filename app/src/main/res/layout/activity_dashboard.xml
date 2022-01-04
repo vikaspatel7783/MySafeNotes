@@ -21,7 +21,7 @@
             app:tabIndicatorColor="@color/note_header_bkg"
             app:tabIndicatorHeight="5dp"
             app:tabSelectedTextColor="@color/black"
-            android:background="@color/tab_bar_background" />
+            android:background="@color/white" />
     </com.google.android.material.appbar.AppBarLayout>
 
     <RelativeLayout
@@ -30,7 +30,8 @@
         android:layout_height="match_parent"
         android:gravity="center_vertical"
         android:padding="20dp"
-        android:visibility="visible">
+        android:background="@color/user_guide_background"
+        android:visibility="gone">
 
         <include layout="@layout/user_guide_layout"/>
 

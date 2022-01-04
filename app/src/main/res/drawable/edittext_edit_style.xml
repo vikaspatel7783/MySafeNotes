@@ -19,7 +19,7 @@
 
     <!--If your shape requires only one solid color-->
     <solid
-        android:color="@color/user_guide_background" />
+        android:color="@color/note_background" />
 
 <!--    <size-->
 <!--        android:width="82dp"-->
