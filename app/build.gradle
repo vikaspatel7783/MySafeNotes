@@ -10,7 +10,7 @@ android {
     buildToolsVersion "30.0.3"
 
     defaultConfig {
-        applicationId "com.vikas.mobile.mysafenotes"
+        applicationId "com.vikas.mobile.mynotes"
         minSdkVersion 23
         targetSdkVersion 30
         versionCode 1
@@ -38,11 +38,11 @@ android {
 
     flavorDimensions "version"
     productFlavors {
-        dev {
-            applicationIdSuffix ".dev"
-            versionName "1.0.debug"
-            dimension "version"
-        }
+//        dev {
+//            applicationIdSuffix ".dev"
+//            versionName "1.0.debug"
+//            dimension "version"
+//        }
     }
 
     repositories {
