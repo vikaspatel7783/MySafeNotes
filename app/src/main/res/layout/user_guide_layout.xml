@@ -10,8 +10,8 @@
         android:gravity="center">
 
         <ImageView
-            android:layout_width="65dp"
-            android:layout_height="65dp"
+            android:layout_width="@dimen/user_guide_icon_width"
+            android:layout_height="@dimen/user_guide_icon_height"
             android:adjustViewBounds="true"
             android:src="@drawable/icon_add_category"/>
 
@@ -25,11 +25,12 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:paddingTop="5dp"
         android:gravity="center">
 
         <ImageView
-            android:layout_width="65dp"
-            android:layout_height="65dp"
+            android:layout_width="@dimen/user_guide_icon_width"
+            android:layout_height="@dimen/user_guide_icon_height"
             android:adjustViewBounds="true"
             android:src="@drawable/icon_add_note"/>
 
@@ -43,11 +44,12 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:paddingTop="5dp"
         android:gravity="center">
 
         <ImageView
-            android:layout_width="65dp"
-            android:layout_height="65dp"
+            android:layout_width="@dimen/user_guide_icon_width"
+            android:layout_height="@dimen/user_guide_icon_height"
             android:adjustViewBounds="true"
             android:src="@drawable/icon_note_search"/>
 
@@ -61,11 +63,12 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:paddingTop="5dp"
         android:gravity="center">
 
         <ImageView
-            android:layout_width="65dp"
-            android:layout_height="65dp"
+            android:layout_width="@dimen/user_guide_icon_width"
+            android:layout_height="@dimen/user_guide_icon_height"
             android:adjustViewBounds="true"
             android:src="@drawable/icon_delete_category_user_guide"/>
 
@@ -79,11 +82,12 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:paddingTop="5dp"
         android:gravity="center">
 
         <ImageView
-            android:layout_width="65dp"
-            android:layout_height="65dp"
+            android:layout_width="@dimen/user_guide_icon_width"
+            android:layout_height="@dimen/user_guide_icon_height"
             android:adjustViewBounds="true"
             android:src="@drawable/icon_settings_user_guide"/>
 
