@@ -12,15 +12,18 @@
         android:theme="@style/Theme.MySafeNotes">
 
         <activity
-            android:name=".ui.dashboard.DashboardActivity">
+            android:name=".ui.dashboard.DashboardActivity"
+            android:configChanges="orientation|screenSize|keyboardHidden">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
         <activity android:name=".ui.AddUpdateNoteActivity"
+            android:configChanges="orientation|screenSize|keyboardHidden"
             android:parentActivityName=".ui.dashboard.DashboardActivity"/>
         <activity android:name=".ui.SettingsActivity"
+            android:configChanges="orientation|screenSize|keyboardHidden"
             android:parentActivityName=".ui.dashboard.DashboardActivity"
             android:label="@string/appbar_settings"/>
     </application>
