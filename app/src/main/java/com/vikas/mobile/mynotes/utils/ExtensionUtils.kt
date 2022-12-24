@@ -1,3 +1,5 @@
+package com.vikas.mobile.mynotes.utils
+
 import androidx.lifecycle.LifecycleOwner
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.Observer

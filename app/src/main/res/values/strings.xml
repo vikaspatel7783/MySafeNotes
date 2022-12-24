@@ -37,6 +37,11 @@
     <string name="settings_version_text1">Application version</string>
     <string name="settings_developer_text1">Developer</string>
     <string name="settings_developer_email">vikaspatel7783@gmail.com</string>
+    <string name="settings_export_text1">Export notes (/Documents/safenotes.json)</string>
+    <string name="settings_export_description">Export all your notes as file in your device so that it can be imported back again to restore your save notes</string>
+
+    <string name="settings_import_text1">Import notes (/Documents/safenotes.json)</string>
+    <string name="settings_import_description">Import all your notes to restore your saved notes</string>
 
     <string name="user_guide_text1">Select icon to add note category (e.g. Finance, Work, Personal etc)</string>
     <string name="user_guide_text2">Select icon to add your notes for created category</string>

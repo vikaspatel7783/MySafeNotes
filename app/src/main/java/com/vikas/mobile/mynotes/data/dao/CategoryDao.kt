@@ -13,6 +13,9 @@ interface CategoryDao {
     @Query("SELECT * FROM category_table /* ORDER BY name ASC */")
     fun getAll(): LiveData<List<Category>>
 
+    @Query("SELECT * FROM category_table /* ORDER BY name ASC */")
+    fun getAllCategoriesSynchronous(): List<Category>
+
     @Insert(onConflict = OnConflictStrategy.REPLACE)
     suspend fun insert(category: Category): Long
 
@@ -24,4 +27,7 @@ interface CategoryDao {
 
     @Query("DELETE FROM category_table WHERE id = :categoryId")
     suspend fun delete(categoryId: Long)
+
+    @Query("DELETE FROM category_table")
+    suspend fun deleteAllCategories()
 }

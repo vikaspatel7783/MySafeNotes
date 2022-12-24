@@ -3,7 +3,7 @@ package com.vikas.mobile.mynotes.data
 import androidx.lifecycle.LiveData
 import com.vikas.mobile.mynotes.data.entity.Category
 import com.vikas.mobile.mynotes.data.entity.Note
-import com.vikas.mobile.mynotes.data.entity.Setting
+import com.vikas.mobile.mynotes.data.entity.NoteExport
 
 interface Repository: SettingsRepository {
 
@@ -15,6 +15,8 @@ interface Repository: SettingsRepository {
 
     suspend fun addUpdateNote(note: Note): Long
 
+    suspend fun addNotes(notes: List<Note>): List<Long>
+
     fun getNotes(categoryId: Long): LiveData<List<Note>>
 
     fun getNote(noteId: Long): LiveData<Note>
@@ -25,4 +27,7 @@ interface Repository: SettingsRepository {
 
     suspend fun searchNotes(searchText: String, onResult: (List<Note>) -> Unit)
 
+    suspend fun getAllNotes(): NoteExport
+
+    suspend fun deleteAll()
 }

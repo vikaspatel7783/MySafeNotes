@@ -105,4 +105,99 @@
 
     </RelativeLayout>
 
+    <RelativeLayout
+        android:id="@+id/settings_container_export"
+        android:layout_below="@+id/settings_container_developer"
+        android:layout_marginTop="25dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <TextView
+            android:id="@+id/label_export"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textColor="@color/note_header_bkg"
+            android:textStyle="bold"
+            android:text="@string/settings_export_text1"/>
+
+        <TextView
+            android:id="@+id/value_export"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/label_export"
+            android:layout_toStartOf="@id/ic_developer_export"
+            android:textColor="@color/settings_subtext_gray"
+            android:text="@string/settings_export_description"/>
+
+
+        <ImageView
+            android:id="@+id/ic_developer_export"
+            android:layout_alignParentEnd="true"
+            android:background="@drawable/round_corner"
+            android:src="@android:drawable/ic_menu_upload"
+            android:layout_marginStart="10dp"
+            android:paddingLeft="5dp"
+            android:paddingRight="5dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true" />
+
+        <ProgressBar
+            android:id="@+id/progress_export_note"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:indeterminateTint="@color/note_header_bkg"
+            android:visibility="gone"
+            android:layout_alignParentEnd="true"/>
+
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:id="@+id/settings_container_import"
+        android:layout_below="@+id/settings_container_export"
+        android:layout_marginTop="25dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <TextView
+            android:id="@+id/label_import"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textColor="@color/note_header_bkg"
+            android:textStyle="bold"
+            android:text="@string/settings_import_text1"/>
+
+        <TextView
+            android:id="@+id/value_import"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/label_import"
+            android:textColor="@color/settings_subtext_gray"
+            android:layout_alignParentStart="true"
+            android:layout_toStartOf="@+id/ic_notes_import"
+            android:text="@string/settings_import_description"/>
+
+
+        <ImageView
+            android:id="@+id/ic_notes_import"
+            android:layout_alignParentEnd="true"
+            android:background="@drawable/round_corner"
+            android:src="@android:drawable/ic_menu_more"
+            android:layout_marginStart="10dp"
+            android:paddingLeft="5dp"
+            android:paddingRight="5dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true" />
+
+        <ProgressBar
+            android:id="@+id/progress_import_note"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:indeterminateTint="@color/note_header_bkg"
+            android:visibility="gone"
+            android:layout_alignParentEnd="true"/>
+
+    </RelativeLayout>
+
 </RelativeLayout>

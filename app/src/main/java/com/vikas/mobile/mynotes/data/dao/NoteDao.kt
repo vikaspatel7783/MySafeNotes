@@ -13,8 +13,14 @@ interface NoteDao {
     @Insert(onConflict = OnConflictStrategy.REPLACE)
     suspend fun insert(note: Note): Long
 
+    @Insert(onConflict = OnConflictStrategy.REPLACE)
+    suspend fun insertAll(notes: List<Note>): List<Long>
+
     @Query("SELECT * FROM note_table WHERE category_id = :categoryId")
     fun getByCategory(categoryId: Long): LiveData<List<Note>>
+
+    @Query("SELECT * FROM note_table WHERE category_id = :categoryId")
+    fun getByCategorySynchronous(categoryId: Long): List<Note>
 
     @Query("SELECT * FROM note_table WHERE id = :noteId")
     fun getNote(noteId: Long): LiveData<Note>

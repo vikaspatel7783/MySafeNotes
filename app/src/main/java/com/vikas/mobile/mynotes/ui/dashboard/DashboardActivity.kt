@@ -24,7 +24,7 @@ import com.vikas.mobile.mynotes.ui.AddUpdateNoteActivity
 import com.vikas.mobile.mynotes.ui.SearchNoteDialogFragment
 import com.vikas.mobile.mynotes.ui.SettingsActivity
 import dagger.hilt.android.AndroidEntryPoint
-import observeOnce
+import com.vikas.mobile.mynotes.utils.observeOnce
 import java.util.*
 
 @AndroidEntryPoint

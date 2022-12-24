@@ -12,7 +12,7 @@ import androidx.core.widget.addTextChangedListener
 import androidx.fragment.app.viewModels
 import com.vikas.mobile.mynotes.R
 import dagger.hilt.android.AndroidEntryPoint
-import observeOnce
+import com.vikas.mobile.mynotes.utils.observeOnce
 import java.util.*
 
 /**
