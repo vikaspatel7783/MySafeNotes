@@ -60,7 +60,12 @@ class SettingsViewModel @Inject constructor() : ViewModel() {
                 val finalNotes = mutableListOf<Note>()
                 for (j in 0 until noteContentArray.length()) {
                     val noteContent = noteContentArray[j]
-                    finalNotes.add(Note(categoryId = categoryId, noteContent = MaskedData(noteContent.toString())))
+                    finalNotes.add(Note(
+                            categoryId = categoryId,
+                            noteContent = MaskedData(noteContent.toString()),
+                            cloudTokenId = null,
+                            syncedStatus = false)
+                    )
                 }
                 repository.addNotes(finalNotes)
             }

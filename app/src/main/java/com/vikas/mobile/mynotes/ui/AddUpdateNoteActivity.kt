@@ -48,7 +48,7 @@ class AddUpdateNoteActivity : AppCompatActivity() {
 
             val noteContent = editTextNoteContent.text.toString()
 
-            val noteObj = Note(categoryId = getCategoryId(), noteContent = MaskedData(noteContent))
+            val noteObj = Note(categoryId = getCategoryId(), noteContent = MaskedData(noteContent), cloudTokenId = null, syncedStatus = false)
             if (isNoteExist()) {
                 noteObj.id = getNoteId()
             }

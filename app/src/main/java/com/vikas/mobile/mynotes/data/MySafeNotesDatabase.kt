@@ -5,6 +5,7 @@ import androidx.room.Database
 import androidx.room.Room
 import androidx.room.RoomDatabase
 import androidx.room.TypeConverters
+import androidx.room.migration.Migration
 import androidx.sqlite.db.SupportSQLiteDatabase
 import androidx.work.OneTimeWorkRequestBuilder
 import androidx.work.WorkManager
@@ -32,9 +33,7 @@ abstract class MySafeNotesDatabase: RoomDatabase() {
         @Volatile private var instance: MySafeNotesDatabase? = null
 
         fun getInstance(context: Context): MySafeNotesDatabase {
-            return instance ?: synchronized(this) {
-                instance ?: buildDatabase(context).also { instance = it }
-            }
+            return buildDatabase(context).also { instance = it }
         }
 
         private fun buildDatabase(context: Context): MySafeNotesDatabase {
