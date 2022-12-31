@@ -42,11 +42,11 @@ class AddCategoryDialogFragment : BottomSheetDialogFragment() {
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
-        addCategoryViewModel.fetchAllCategories().observeOnce(this, { categoryList ->
+        addCategoryViewModel.fetchAllCategories().observeOnce(this) { categoryList ->
             categoryList.forEach { category ->
-                allCategoriesName.add(category.name.content.toLowerCase(Locale.ROOT))
+                allCategoriesName.add(category.name.content.lowercase(Locale.ROOT))
             }
-        })
+        }
 
         view.findViewById<Button>(R.id.buttonAddCategoryCancel).setOnClickListener {
             dismiss()
