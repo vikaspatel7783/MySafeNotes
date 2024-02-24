@@ -11,41 +11,42 @@ import com.vikas.mobile.mynotes.data.entity.Note
 import com.vikas.mobile.mynotes.data.entity.Setting
 import com.vikas.mobile.mynotes.network.NetworkCheck
 import com.vikas.mobile.mynotes.network.NetworkRepository
+import com.vikas.mobile.mynotes.network.NetworkRepositoryImpl
+import com.vikas.mobile.mynotes.network.NotesNetworkService
 import com.vikas.mobile.mynotes.network.entity.CloudNoteRequest
 import kotlinx.coroutines.coroutineScope
 import javax.inject.Inject
+
 
 class CloudNotesWorker(
     context: Context,
     workerParams: WorkerParameters
 ) : CoroutineWorker(context, workerParams) {
 
-    @Inject lateinit var repository: Repository
-    @Inject lateinit var networkRepository: NetworkRepository
+//    @Inject lateinit var repository: Repository
+//    @Inject lateinit var networkRepository: NetworkRepository
 
     override suspend fun doWork(): Result = coroutineScope {
 
-        if (NetworkCheck.isDeviceOnline(applicationContext)) {
-            Toast.makeText(applicationContext, "No Internet connection found", Toast.LENGTH_LONG).show()
-            Result.failure()
-        }
+        val database = MySafeNotesDatabase.getInstance(applicationContext)
+        val networkRepository = NetworkRepositoryImpl(NotesNetworkService.create())
 
-        val noteJson = inputData.getString(DATA)
-        val mobileNoteObject = noteJson?.let { Note.deserialize(it) }
+        val noteJson = inputData.getString(DATA)!!
+        val mobileNoteObject = noteJson.let { Note.deserialize(it) }
 
         when (inputData.getString(CLOUD_OPERATION)) {
             CLOUD_OPERATION_ADD_NOTE -> {
                 val cloudNoteRequest = CloudNoteRequest(
                     cloudNoteId = null,
-                    noteCategory = "",
-                    noteContent = mobileNoteObject?.noteContent?.content
+                    noteCategory = database.categoryDao().get(mobileNoteObject.categoryId).name.content,
+                    noteContent = mobileNoteObject.noteContent.content
                 )
                 val cloudNoteResponse = networkRepository.addNote(cloudNoteRequest)
-                mobileNoteObject?.cloudTokenId = cloudNoteResponse.response.toString()
+                mobileNoteObject.id = mobileNoteObject.id
+                mobileNoteObject.cloudTokenId = cloudNoteResponse.response.toString()
+                mobileNoteObject.syncedStatus = true
 
-                if (mobileNoteObject != null) {
-                    repository.addUpdateNote(mobileNoteObject)
-                }
+                database.noteDao().insert(mobileNoteObject)
             }
 
             CLOUD_OPERATION_UPDATE_NOTE -> {}

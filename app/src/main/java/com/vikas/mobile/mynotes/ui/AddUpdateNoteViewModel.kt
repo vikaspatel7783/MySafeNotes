@@ -2,9 +2,7 @@ package com.vikas.mobile.mynotes.ui
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import androidx.work.Data
-import androidx.work.OneTimeWorkRequestBuilder
-import androidx.work.WorkManager
+import androidx.work.*
 import com.vikas.mobile.mynotes.data.Repository
 import com.vikas.mobile.mynotes.data.entity.Note
 import com.vikas.mobile.mynotes.network.NetworkRepository
@@ -26,18 +24,40 @@ class AddUpdateNoteViewModel @Inject constructor() : ViewModel() {
 
     fun addUpdateNote(note: Note) =
         viewModelScope.launch(Dispatchers.IO) {
-            val dataBuilder = Data.Builder()
-            dataBuilder.put(CloudNotesWorker.CLOUD_OPERATION,
-                if (note.cloudTokenId == null) CloudNotesWorker.CLOUD_OPERATION_ADD_NOTE else CloudNotesWorker.CLOUD_OPERATION_UPDATE_NOTE
-            )
-            dataBuilder.put(CloudNotesWorker.DATA, Note.serialize(note))
-            val workerRequest = OneTimeWorkRequestBuilder<CloudNotesWorker>()
-                .setInputData(dataBuilder.build())
-                .build()
-            workManagerModule.enqueue(workerRequest)
-
-            repository.addUpdateNote(note)
+            addUpdateNoteInNetwork(note)
+//            repository.addUpdateNote(note)
+//            triggerUploadNoteWorker(note)
         }
+
+    private suspend fun addUpdateNoteInNetwork(note: Note) {
+        val cloudNoteRequest = CloudNoteRequest(
+            cloudNoteId = null,
+            noteCategory = repository.getCategory(note.categoryId).name.content,
+            noteContent = note.noteContent.content
+        )
+        val cloudNoteResponse = networkRepository.addNote(cloudNoteRequest)
+        note.cloudTokenId = cloudNoteResponse.response.toString()
+        note.syncedStatus = true
+
+        repository.addUpdateNote(note)
+    }
+
+    private fun triggerUploadNoteWorker(note: Note) {
+        val dataBuilder = Data.Builder()
+        dataBuilder.put(CloudNotesWorker.CLOUD_OPERATION,
+            if (note.cloudTokenId == null) CloudNotesWorker.CLOUD_OPERATION_ADD_NOTE else CloudNotesWorker.CLOUD_OPERATION_UPDATE_NOTE
+        )
+        dataBuilder.put(CloudNotesWorker.DATA, Note.serialize(note))
+
+        val constraints = Constraints.Builder().setRequiredNetworkType(NetworkType.CONNECTED).build()
+
+        val workerRequest = OneTimeWorkRequestBuilder<CloudNotesWorker>()
+            .setInputData(dataBuilder.build())
+            .setConstraints(constraints)
+            .build()
+        workManagerModule.enqueue(workerRequest)
+    }
+
 
 //    class CategoryTabViewModelFactory() : ViewModelProvider.Factory {
 //    override fun <T : ViewModel?> create(modelClass: Class<T>): T {

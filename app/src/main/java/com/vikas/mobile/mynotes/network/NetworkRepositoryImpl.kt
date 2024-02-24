@@ -16,4 +16,14 @@ class NetworkRepositoryImpl @Inject constructor(private val notesNetworkService:
         }
     }
 
+    override suspend fun updateNote(cloudNoteRequest: CloudNoteRequest): CloudNoteResponse {
+        return try {
+            notesNetworkService.updateNote(cloudNoteRequest)
+        } catch (ex: Exception) {
+            ex.printStackTrace()
+            throw ex
+        }
+    }
+
+
 }

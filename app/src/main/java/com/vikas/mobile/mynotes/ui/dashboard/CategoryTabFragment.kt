@@ -39,6 +39,7 @@ class CategoryTabFragment(private val categoryId: Long) : Fragment() {
         categoryTabViewModel.getNotes(categoryId).observe(viewLifecycleOwner, { it ->
 
             val noteListAdapter = NoteListAdapter(
+                root.context,
                     dataSet = it,
 
             onClick = {

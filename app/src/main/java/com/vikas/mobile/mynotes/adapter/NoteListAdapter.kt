@@ -1,15 +1,20 @@
 package com.vikas.mobile.mynotes.adapter
 
+import android.content.Context
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageButton
+import android.widget.ImageView
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.vikas.mobile.mynotes.R
 import com.vikas.mobile.mynotes.data.entity.Note
+import dagger.hilt.android.qualifiers.ApplicationContext
+import javax.inject.Inject
 
-class NoteListAdapter(private val dataSet: List<Note>,
+class NoteListAdapter(private val context: Context,
+                      private val dataSet: List<Note>,
                       private val onClick: (Note) -> Unit,
                       private val onDelete: (Note) -> Unit,
                       private val onShare: (Note) -> Unit) :
@@ -23,6 +28,7 @@ class NoteListAdapter(private val dataSet: List<Note>,
         val noteContainerView: ViewGroup = view.findViewById(R.id.containerNoteListItem)
         val noteDeleteView: ImageButton = view.findViewById(R.id.note_delete)
         val noteShareView: ImageButton = view.findViewById(R.id.note_share)
+        val noteCloudView: ImageView = view.findViewById(R.id.note_cloud_view)
         val noteHeaderView: TextView = view.findViewById(R.id.note_content_header)
         val noteContentView: TextView = view.findViewById(R.id.note_content_item)
     }
@@ -51,9 +57,17 @@ class NoteListAdapter(private val dataSet: List<Note>,
         val note = dataSet[position]
         viewHolder.noteHeaderView.text = getHeaderText(note.noteContent.content)
         viewHolder.noteContentView.text = getContentText(note.noteContent.content)
+        viewHolder.noteCloudView.background =  context.getDrawable(isCloudSynced(note))
         viewHolder.noteContainerView.tag = note
         viewHolder.noteDeleteView.tag = note
         viewHolder.noteShareView.tag = note
+    }
+
+    private fun isCloudSynced(note: Note): Int {
+        return if (note.cloudTokenId != null)
+            R.drawable.cloud_synced_true
+        else
+            R.drawable.cloud_synced_false
     }
 
     private fun getHeaderText(noteContent: String): String {

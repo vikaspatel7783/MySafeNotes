@@ -51,6 +51,7 @@ class SearchNoteDialogFragment : BottomSheetDialogFragment() {
                 searchCountView.text = notes.size.toString()
 
                 val noteListAdapter = NoteListAdapter(
+                        view.context,
                         dataSet = notes,
                         onClick = { note ->
                             searchViewModel.getCategory(note.categoryId).observe(this, { category ->

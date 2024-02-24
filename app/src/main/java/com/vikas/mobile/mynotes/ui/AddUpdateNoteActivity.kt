@@ -53,7 +53,7 @@ class AddUpdateNoteActivity : AppCompatActivity() {
                 noteObj.id = getNoteId()
             }
             addUpdateNoteViewModel.addUpdateNote(noteObj)
-            finish()
+//            finish()
         }
     }
 

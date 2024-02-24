@@ -38,10 +38,19 @@
             android:id="@+id/note_delete"
             android:layout_height="25dp"
             android:layout_width="25dp"
+            android:layout_toStartOf="@+id/note_cloud_view"
+            android:layout_centerVertical="true"
+            android:layout_marginEnd="42dp"
+            android:background="@android:drawable/ic_menu_delete" />
+
+        <ImageView
+            android:id="@+id/note_cloud_view"
+            android:layout_height="25dp"
+            android:layout_width="25dp"
             android:layout_alignParentEnd="true"
             android:layout_centerVertical="true"
-            android:layout_marginRight="7dp"
-            android:background="@android:drawable/ic_menu_delete" />
+            android:layout_marginEnd="7dp"
+            android:background="@drawable/cloud_synced_false" />
     </RelativeLayout>
 
     <TextView

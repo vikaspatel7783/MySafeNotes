@@ -5,5 +5,5 @@ import com.vikas.mobile.mynotes.network.entity.CloudNoteResponse
 
 interface NetworkRepository {
     suspend fun addNote(cloudNoteRequest: CloudNoteRequest): CloudNoteResponse
-
+    suspend fun updateNote(cloudNoteRequest: CloudNoteRequest): CloudNoteResponse
 }
